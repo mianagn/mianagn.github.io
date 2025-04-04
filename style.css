@@ -1,0 +1,737 @@
+.righteous-regular {
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+*{
+    margin:0;
+    font-size:16px;
+    font-family: "Righteous", Helvetica;
+}
+#home {
+    position: relative; /* Ensure it can contain the animation */
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers elements horizontally */
+    justify-content: center; /* Centers elements vertically */
+    height: 100vh; /* Makes the home section take the full height of the viewport */
+    overflow: hidden; /* Prevents overflow issues */
+    z-index:1; /* Ensures content appears above the animation */
+    /*background-color: #121212; /* Sets a dark background color */
+    
+}
+
+#home .section-content {
+    position: relative; /* Keeps content above the animation */
+    z-index: 1; /* Ensures content is above the animation */
+}
+
+#home .frame-wrapper {
+    /*background-color: #121212; /* Keeps the background color */
+    width: 111.75rem; /* 1788px / 16 */
+    height: 64.25rem; /* 1028px / 16 */
+    margin-top: 0rem; /* Adds space to account for the fixed header */
+}
+
+#home .frame {
+    position: relative;
+    width: 90%;
+    max-width: 90rem;
+    height: 62.5rem;
+    margin: 0 auto;
+    top: 0.875rem;
+}
+
+#home .text-wrapper {
+    position: absolute;
+    top: 14.9375rem; /* 239px / 16 */
+    left: 53.375rem; /* 886px / 16 */
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #f5f5f5;
+    font-size: 5rem; /* 80px / 16 */
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+#home .hello-my-name-is {
+    position: absolute;
+    width: 32.8125rem; /* 525px / 16 */
+    top: 22.6875rem; /* 363px / 16 */
+    left: 47.5625rem; /* 809px / 16 */
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #d6d0d0;
+    font-size: 1.25rem; /* 20px / 16 */
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+#home .overlap {
+    position: absolute;
+    width: 31.875rem; /* 510px / 16 */
+    height: 11.5rem; /* 184px / 16 */
+    top: 49.8125rem; /* 797px / 16 */
+    left: 4.25rem; /* 116px / 16 */
+    background-color: #353232;
+    border-radius: 1.25rem; /* 20px / 16 */
+    opacity: 0.9;
+    border: 0.2625rem solid #4fb6c9; /* 1px / 16 */
+    box-shadow: 0 0 0.3125rem #4fb6c9, 0 0 0.625rem #4fb6c9; /* Softer neon glow effect */
+}
+
+#home .skills {
+    position: absolute;
+    width: 14.0625rem; /* 225px / 16 */
+    top: 0;
+    left: 0;
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #f5f5f5;
+    font-size: 1.875rem; /* 30px / 16 */
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+#home .java-logo {
+    position: absolute;
+    width: 9.8125rem; /* 157px / 16 */
+    height: 9.375rem; /* 118px / 16 */
+    top: 2.125rem; /* 66px / 16 */
+    left: 0;
+    object-fit: cover;
+}
+
+#home .restskills {
+    position: absolute;
+    width: 22.6875rem; /* 363px / 16 */
+    height: 9.25rem; /* 148px / 16 */
+    top: 2.25rem; /* 36px / 16 */
+    left: 9.1875rem; /* 147px / 16 */
+    object-fit: cover;
+}
+
+#home .overlap-header {
+    position: absolute;
+    width: 28.5625rem; /* 457px / 16 */
+    height: 7.25rem; /* 116px / 16 */
+    top: 32.75rem; /* 524px / 16 */
+    left: 49.9375rem; /* 815px / 16 */
+    background-color: #4fb6c9;
+    border-radius: 1.25rem; /* 20px / 16 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 1.25rem #4fb6c9, 0 0 2.5rem #4fb6c9, 0 0 3.75rem #4fb6c9; /* Neon glow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#home .overlap-header:hover {
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+    box-shadow: 0 0 1.875rem #4fb6c9, 0 0 3.75rem #4fb6c9, 0 0 5.625rem #4fb6c9; /* Intensifies the glow on hover */
+}
+
+#home .text-wrapper-2 {
+    position: relative;
+    font-family: "Righteous-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 2.5rem; /* 40px / 16 */
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    text-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9, 0 0 1.875rem #4fb6c9; /* Neon text glow */
+}
+
+#home .profile-picture {
+    position: absolute;
+    width: 29.9375rem; /* 367px / 16 */
+    height: 29.9375rem; /* Make height equal to width */
+    top: 12.875rem; /* 174px / 16 */
+    left: 4.875rem; /* 158px / 16 */
+    object-fit: cover;
+    border-radius: 50%; /* Makes the image circular */
+}
+
+#home .header {
+    position: absolute;
+    width: 77.125rem; /* 1234px / 16 */
+    height: 5.8125rem; /* 93px / 16 */
+    top: 0;
+    left: 4.625rem; /* 74px / 16 */
+}
+
+/* Header container */
+#home .overlap-2 {
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-around; /* Distributes items evenly with space between */
+    gap: 2rem; /* Adds spacing between the links */
+    width: 80%; /* Adjusts the width of the header */
+    max-width: 1200px; /* Optional: Sets a maximum width */
+    height: 5.8125rem; /* Matches the header height */
+    background-color: #343131; /* Keeps the background color */
+    border-radius: 0.875rem; /* Keeps the rounded corners */
+    position: fixed; /* Makes the header fixed */
+    top: 1rem; /* Adds some space from the top of the viewport */
+    left: 50%; /* Centers the header horizontally */
+    transform: translateX(-50%); /* Centers the header perfectly */
+    z-index: 1; /* Ensures the header stays above other elements */
+    padding: 0 1rem; /* Adds padding inside the header */
+}
+
+#home .overlap-header-wrapper {
+    position: absolute;
+    width: 9.8125rem; /* 157px / 16 */
+    height: 5.375rem; /* 86px / 16 */
+    top: 0.4375rem; /* 7px / 16 */
+    left: 65.625rem; /* 1050px / 16 */
+}
+
+#home .overlap-header-2 {
+    position: relative;
+    height: 5.375rem; /* 86px / 16 */
+}
+
+#home .linkedin {
+    width: 3rem; /* Adjust size as needed */
+    height: 3rem; /* Adjust size as needed */
+    object-fit: cover;
+    cursor: pointer; /* Makes it clickable */
+}
+
+#home .github {
+    width: 3rem; /* Adjust size as needed */
+    height: 3rem; /* Adjust size as needed */
+    object-fit: cover;
+    cursor: pointer; /* Makes it clickable */
+}
+
+#home .text-wrapper-projects,
+#home .text-wrapper-home,
+#home .text-wrapper-contact,
+#home .text-wrapper-about {
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #8f8a8a;
+    font-size: 1.875rem; /* 30px / 16 */
+    letter-spacing: 0;
+    line-height: normal;
+    text-align: center; /* Ensures text is centered */
+    margin: 0; /* Removes any default margin */
+}
+
+.button-link {
+    display: inline-block;
+    text-decoration: none;
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #8f8a8a;
+    font-size: 1.875rem; /* 30px / 16 */
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border: 0.125rem solid #8f8a8a; /* 2px -> 0.125rem */
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.button-link:hover {
+    color: #ffffff;
+    background-color: #4fb6c9;
+    border-color: #4fb6c9;
+    box-shadow: 0 0 10px #4fb6c9, 0 0 20px #4fb6c9;
+    transform: scale(1.05);
+}
+
+.button-link.active {
+    color: #ffffff;
+    background-color: #4fb6c9;
+    border-color: #4fb6c9;
+    box-shadow: 0 0 10px #4fb6c9, 0 0 20px #4fb6c9;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+#projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack the heading and project container vertically */
+    height: 100vh; /* Full viewport height */
+    /*background-color: #121212;
+}
+
+#projects-heading-container {
+    text-align: center;
+    margin-top: 2rem; /* Add space above the heading */
+    margin-bottom: 2rem; /* Add space below the heading */
+}
+
+
+
+#projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem; /* Space between project cards */
+    justify-content: center; /* Center the project cards horizontally */
+    align-items: center; /* Center the project cards vertically */
+    margin-top: 2rem; /* Add space above the projects */
+    height: 100%; /* Ensure the container takes full height */
+}
+
+.projects-heading {
+    position: relative;
+    top: 14rem;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "Righteous", sans-serif;
+    background: linear-gradient(90deg, #6ab6c4, #8ccad4, #4fb6c9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+    
+}
+
+.project {
+    background-color: #353232;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 30rem; /* Adjust width as needed */
+    height: 30.25rem; /* Adjust height as needed */
+    text-align: center;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2); /* Add shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: center; /* Center child elements horizontally */
+}
+
+.project img {
+    width: 100%; /* Fit the container width */
+    max-width: 28rem; /* Set a consistent maximum width for all images */
+    height: 16rem; /* Set a consistent height for all images */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 0.5rem; /* Optional: Rounded corners */
+    margin-bottom: 1rem; /* Add space below the image */
+}
+
+.project h2 {
+    font-size: 1.5rem;
+}
+.project {
+    font-family: "Righteous", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 1.25rem; /* 20px / 16 */
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.project a {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4fb6c9; /* Highlight the link */
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #8ccad4; /* Subtle glow effect */
+}
+
+.project a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9, 0 0 1.875rem #4fb6c9; /* Intensify the glow on hover */
+}
+
+
+/* About Me Section */
+#about {
+    height: 100vh; /* Full viewport height */
+    /*background-color: #121212; /* Dark background for contrast */
+    color: #ffffff; /* White text for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom:2.4rem;
+}
+
+#about h1,
+#about .education-header,
+#about .work-header,
+#about .skill-header {
+    font-size: 2rem; /* Adjust size as needed */
+    margin-top: 2rem; /* Space above each header */
+    margin-bottom: 1rem; /* Space below each header */
+    font-family: "Righteous", sans-serif;
+    background: linear-gradient(90deg, #6ab6c4, #8ccad4, #4fb6c9); /* Gradient colors */
+    background-clip: text;
+    -webkit-background-clip: text; /* For WebKit browsers */
+    -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+    text-fill-color: transparent; /* Fallback for other browsers */
+    text-align: center; /* Center-align the text */
+    text-shadow: none; /* Remove any existing shadow */
+}
+
+#about img.profile-picture-about {
+    width: 9rem; /* Adjust size as needed */
+    height: 9rem; /* Make it circular */
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 1.5rem; /* Space below the image */
+    border: 0.1875rem solid #4fb6c9; /* 3px -> 0.1875rem */
+    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9; /* Glow effect */
+}
+
+#about .education-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+#about .education-list li {
+    font-size: 1.25rem; /* Slightly larger text */
+    margin-bottom: 0.5rem; /* Space between list items */
+    color: #d3d3d3; /* Light gray for text */
+}
+
+#about .work,
+#about .skills,
+#about .vision {
+    font-size: 1.25rem; /* Standard paragraph size */
+    line-height: 1.6; /* Improve readability */
+    color: #d3d3d3; /* Light gray for text */
+    margin-bottom: 2rem; /* Space below each paragraph */
+    max-width: 800px; /* Limit width for better readability */
+}
+
+/* Contact Section */
+#contact {
+    height: 76vh; /* Full viewport height */
+    /*background: linear-gradient(180deg, #121212, #1e1e1e); /* Subtle gradient background */
+    color: #ffffff; /* White text for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    gap: 2rem; /* Space between elements */
+}
+
+#contact h1 {
+    font-size: 3rem; /* Larger heading */
+    margin-bottom: 1rem;
+    font-family: "Righteous", sans-serif;
+    background: linear-gradient(90deg, #6ab6c4, #8ccad4, #4fb6c9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px #4fb6c9, 0 0 20px #8ccad4; /* Glow effect */
+}
+
+#contact p {
+    font-size: 1.5rem; /* Larger text for better readability */
+    margin-bottom: 1rem;
+    color: #d3d3d3; /* Light gray for text */
+    max-width: 800px; /* Limit width for better readability */
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between list items */
+}
+
+.contact-list li {
+    font-size: 1.5rem; /* Larger text */
+    color: #ffffff;
+}
+
+.contact-list a {
+    color: #4fb6c9;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.contact-list a:hover {
+    color: #8ccad4;
+    text-shadow: 0 0 10px #4fb6c9, 0 0 20px #8ccad4; /* Glow effect on hover */
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Space between form elements */
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 600px; /* Limit form width */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #4fb6c9;
+    border-radius: 0.5rem;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 1.25rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #8f8a8a; /* Placeholder text color */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #8ccad4;
+    box-shadow: 0 0 10px #4fb6c9, 0 0 20px #8ccad4; /* Glow effect on focus */
+    outline: none; /* Remove default outline */
+}
+
+.contact-form button {
+    padding: 1rem 2rem;
+    background-color: #4fb6c9;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #8ccad4; /* Glow effect */
+}
+
+.contact-form button:hover {
+    background-color: #8ccad4;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 0 1.25rem #4fb6c9, 0 0 1.875rem #8ccad4; /* Intensify glow on hover */
+}
+
+/* Social Media Icons in Contact Section */
+.wrapper {
+  display: inline-flex;
+  list-style: none;
+  height: 7.5rem; /* 120px -> 7.5rem */
+  width: 100%;
+  padding:0;
+  padding-top: 2.5rem; /* 40px -> 2.5rem */
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+}
+
+.wrapper .icon {
+  position: relative;
+  margin: 0.625rem; /* 10px -> 0.625rem */
+  width: 3.125rem; /* 50px -> 3.125rem */
+  height: 3.125rem; /* 50px -> 3.125rem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.wrapper .social-tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  font-size: 0.875rem; /* 14px -> 0.875rem */
+  background: #fff;
+  color: #333;
+  padding: 0.3125rem 0.5rem; /* 5px 8px -> 0.3125rem 0.5rem */
+  border-radius: 0.3125rem; /* 5px -> 0.3125rem */
+  box-shadow: 0 0.625rem 0.625rem rgba(0, 0, 0, 0.1); /* 10px -> 0.625rem */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-align: center;
+}
+
+.wrapper .social-tooltip::before {
+  position: absolute;
+  content: "";
+  height: 0.5rem; /* 8px -> 0.5rem */
+  width: 0.5rem; /* 8px -> 0.5rem */
+  background: #fff;
+  bottom: -0.1875rem; /* -3px -> -0.1875rem */
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon a:hover .social-tooltip {
+  top: -2.8125rem; /* -45px -> -2.8125rem */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Facebook Icon */
+.wrapper .facebook a:hover {
+  background: #1877f2;
+  color: #fff;
+}
+
+.wrapper .facebook a:hover .social-tooltip,
+.wrapper .facebook a:hover .social-tooltip::before {
+  background: #1877f2;
+  color: #fff;
+}
+
+/* Instagram Icon */
+.wrapper .instagram a:hover {
+  background: #e4405f;
+  color: #fff;
+}
+
+.wrapper .instagram a:hover .social-tooltip,
+.wrapper .instagram a:hover .social-tooltip::before {
+  background: #e4405f;
+  color: #fff;
+}
+
+/* Email Icon */
+.wrapper .email a:hover {
+  background: #4fb6c9;
+  color: #fff;
+}
+
+.wrapper .email a:hover .social-tooltip,
+.wrapper .email a:hover .social-tooltip::before {
+  background: #4fb6c9;
+  color: #fff;
+}
+
+.example-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.example-2 .icon-content {
+    margin: 0 0.625rem; /* 10px -> 0.625rem */
+    position: relative;
+}
+
+.example-2 .icon-content .tooltip {
+    position: absolute;
+    top: -1.875rem; /* 30px -> 1.875rem */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 0.375rem 0.625rem; /* 6px 10px -> 0.375rem 0.625rem */
+    border-radius: 0.3125rem; /* 5px -> 0.3125rem */
+    opacity: 0;
+    visibility: hidden;
+    font-size: 0.875rem; /* 14px -> 0.875rem */
+    transition: all 0.3s ease;
+}
+
+.example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -2.125rem; /* 34px -> 2.125rem */
+}
+
+.example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.125rem; /* 50px -> 3.125rem */
+    height: 3.125rem; /* 50px -> 3.125rem */
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.example-2 .icon-content a:hover {
+    box-shadow: 0.1875rem 0.125rem 2.8125rem 0rem rgb(0 0 0 / 12%); /* 3px 2px 45px -> 0.1875rem 0.125rem 2.8125rem */
+}
+
+.example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 1.875rem; /* 30px -> 1.875rem */
+    height: 1.875rem; /* 30px -> 1.875rem */
+}
+
+.example-2 .icon-content a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+}
+
+.example-2 .icon-content a:hover .filled {
+    height: 100%;
+}
+
+.example-2 .icon-content a[data-social="linkedin"] .filled,
+.example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
+    background-color: #0274b3;
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"] ~ .tooltip {
+    background-color: #6f2679;
+}
+
+/* Canvas styling */
+canvas {
+    position: fixed; /* Fix the canvas to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    pointer-events: none; /* Prevent the canvas from blocking interactions */
+    z-index: -1; /* Place it behind all other content */
+    background-color:#121212;
+}
+
