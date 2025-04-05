@@ -794,6 +794,18 @@ body.light-theme .email a:hover .tooltip::before {
     color: #fff;
 }
 
+/* Center contact note on all screen sizes */
+.contact-note {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    max-width: 90%;
+
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5px);
+}
+
 /* Canvas styling */
 body {
     margin: 0;
@@ -1128,6 +1140,7 @@ body.light-theme .project-card:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Media Queries */
 /* Mobile devices (up to 767px) */
 @media (max-width: 767px) {
@@ -1168,6 +1181,35 @@ body.light-theme .project-card:hover {
     }
     #about {
         padding-top: 10rem;
+    }
+
+    /* Increase minimum height for sections */
+    .section {
+        min-height: 100vh;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    /* Add specific spacing for the home section */
+    #home {
+        min-height: 120vh; /* Taller to accommodate all content */
+        padding-bottom: 5rem; /* Extra padding at bottom */
+    }
+    
+    /* Ensure projects section starts clearly below skills */
+    #projects {
+        padding-top: 6rem; /* Push projects further down */
+        margin-top: 3rem; /* Additional margin to create separation */
+    }
+    
+    /* Create more space for skills box */
+    .skills-box {
+        margin-bottom: 4rem; /* Increase bottom margin */
+    }
+    
+    /* Force section breaks */
+    .section + .section {
+        margin-top: 2rem; /* Add margin between consecutive sections */
     }
 }
 
@@ -1397,8 +1439,26 @@ body.light-theme .project-card:hover {
         padding-top: 6rem;
     }
 
-    .contact-note{
-        padding-top: 8rem;
+    .contact-note {
+        width: 90%;
+        margin: 2rem auto;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Remove the padding-top that was pushing it down too far */
+    .contact-note {
+        padding-top: 1rem;
+    }
+    
+    /* Ensure proper spacing in contact section */
+    #contact {
+        padding-bottom: 4rem;
+    }
+    
+    /* Add proper space after social links */
+    .social-links {
+        margin-bottom: 1rem;
     }
 }
 
@@ -1456,3 +1516,17 @@ body.light-theme .project-card:hover {
         max-width: 600px; /* Set a reasonable max width */
     }
 }
+
+/* Additional fix for very small screens */
+@media (max-width: 400px) and (max-height: 750px) {
+    #home {
+        min-height: 130vh; /* Even more height for very small screens */
+    }
+    
+    .skills-box {
+        margin-bottom: 5rem; /* More margin on smallest screens */
+    }
+}
+
+
+
