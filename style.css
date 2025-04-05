@@ -422,6 +422,29 @@ body.light-theme .project-card {
     transition: transform 0.3s ease;
 }
 
+/* Smooth transition for theme-specific images */
+.project-image {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Initial opacity states */
+.light-theme-img {
+    opacity: 0;
+}
+
+.dark-theme-img {
+    opacity: 1;
+}
+
+/* Theme-specific opacity adjustments */
+body.light-theme .light-theme-img {
+    opacity: 1;
+}
+
+body.light-theme .dark-theme-img {
+    opacity: 0;
+}
+
 /* Hover effect for project image */
 .project-card:hover .project-image {
     transform: scale(1.05); /* Slight zoom on hover */
@@ -463,6 +486,24 @@ body.light-theme .project-card {
 .project-link:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(255, 87, 71, 0.5);
+}
+
+/* Theme-specific project images */
+.light-theme-img {
+  display: none; /* Hide by default */
+}
+
+.dark-theme-img {
+  display: block; /* Show by default (dark theme is default) */
+}
+
+/* Show/hide images based on theme */
+body.light-theme .light-theme-img {
+  display: block; /* Show light theme image when light theme is active */
+}
+
+body.light-theme .dark-theme-img {
+  display: none; /* Hide dark theme image when light theme is active */
 }
 
 /* About section */
@@ -1527,6 +1568,8 @@ body.light-theme .project-card:hover {
         margin-bottom: 5rem; /* More margin on smallest screens */
     }
 }
+
+
 
 
 
