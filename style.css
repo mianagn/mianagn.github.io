@@ -13,7 +13,16 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: #ffffff;
+    color: var(--text-primary);
+}
+
+/* Revert section heading styles */
+.section-heading {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "Righteous", sans-serif;
 }
 
 /* Home section base layout - Mobile-first approach */
@@ -38,15 +47,16 @@
     width: 90%;
     max-width: 1200px;
     min-height: 5rem;
-    background-color: rgba(40, 40, 45, 0.85);
+    background-color: var(--card-bg);
     border-radius: 0.875rem;
     position: fixed;
     top: 1rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform:translateX(-50%);
     z-index: 100;
     padding: 0.5rem 1rem;
     flex-wrap: wrap;
+    border-color: var(--card-border);
 }
 
 /* Navigation styles */
@@ -66,29 +76,29 @@
     display: inline-block;
     text-decoration: none;
     font-weight: 400;
-    color: #8f8a8a;
+    color: var(--nav-link-color);
     font-size: 1.5rem;
     text-align: center;
     padding: 0.5rem 0.75rem;
-    border: 0.125rem solid #8f8a8a;
+    border: 0.125rem solid var(--nav-link-color);
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     border-width: 1px;
 }
 
 .nav-link:hover {
-    color: #ffffff;
-    background-color: #4fb6c9;
-    border-color: #4fb6c9;
-    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9;
+    color: var(--text-primary);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0.625rem var(--accent-color), 0 0 1.25rem var(--accent-color);
     transform: scale(1.05);
 }
 
 .nav-link.active {
-    color: #ffffff;
-    background-color: #4fb6c9;
-    border-color: #4fb6c9;
-    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9;
+    color: var(--text-primary);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0.625rem var(--accent-color), 0 0 1.25rem var(--accent-color);
 }
 
 /* Home content container */
@@ -107,6 +117,23 @@
     border-radius: 50%;
     object-fit: cover;
     margin: 2rem auto;
+    border: 0.6rem solid transparent; /* Start with transparent border */
+    transition: border-color 0.6s ease-in-out;
+}
+
+/* Profile image border animation */
+body.light-theme .profile-image.animate-border {
+    border-color: #FF5747; /* Coral border color */
+}
+body.dark-theme .profile-image.animate-border {
+    border-color: #4fb6c9; /* Blue border color */
+}
+
+/* Name */
+.name-title {
+    font-size: 3.5rem;
+    border: 0.6rem solid transparent; /* Start with no visible border */
+    transition: border-color 1s ease-in-out;
 }
 
 /* Name */
@@ -133,7 +160,7 @@
     max-width: 20rem;
     height: auto;
     min-height: 4rem;
-    background-color: #4fb6c9;
+    background-color: var(--accent-color);
     border-radius: 8px;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -143,32 +170,40 @@
     justify-content: center;
     cursor: pointer;
     margin: 0 auto 2rem;
-    box-shadow: 0 0 1.25rem #4fb6c9, 0 0 2.5rem #4fb6c9, 0 0 3.75rem #4fb6c9;
+    box-shadow: 0 0 1.25rem var(--accent-color), 0 0 2.5rem var(--accent-color), 0 0 3.75rem var(--accent-color);
 }
 
 .cta-text {
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 1.5rem;
     text-align: center;
 }
 
 .cta-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 1.875rem #4fb6c9, 0 0 3.75rem #4fb6c9, 0 0 5.625rem #4fb6c9;
+    box-shadow: 0 0 1.875rem var(--accent-color), 0 0 3.75rem var(--accent-color), 0 0 5.625rem var(--accent-color);
 }
 
 /* Skills section */
 .skills-box {
     width: 90%;
     max-width: 30rem;
-    background-color: rgba(40, 40, 45, 0.85);
+    background-color: var(--card-bg);
     backdrop-filter: blur(5px);
     border-radius: 1.25rem;
     opacity: 0.9;
-    border: 2px solid #4fb6c9;
+    border: 2px solid var(--card-border);
     box-shadow: 0 0 8px rgba(79, 182, 201, 0.4), 0 0 20px rgba(79, 182, 201, 0.2);
     padding: 1.5rem;
     margin: 0 auto 2rem;
+}
+
+/* Skills box in wood theme */
+body.light-theme .skills-box {
+    background-color: rgba(255, 240, 230, 0.85); /* More translucent background */
+    backdrop-filter: blur(5px); /* Add blur effect for glassmorphism */
+    box-shadow: 0 5px 20px rgba(255, 87, 71, 0.15);
+    border: 1px solid rgba(255, 87, 71, 0.4);
 }
 
 .skills-title {
@@ -220,7 +255,11 @@
     margin: 0 auto 0.5rem; /* Center horizontally and add bottom margin */
     height: 4rem; /* Set consistent height */
     transition: transform 0.3s ease;
-    color: #4fb6c9;
+    color: var(--accent-color);
+}
+
+body.light-theme .skill-logo.fa-brands {
+    color: #FF6F61; /* Match accent color */
 }
 
 .skill-name {
@@ -247,139 +286,183 @@
     100% { transform: translateY(0); }
 }
 
-/* Projects section */
+/* Slide in from the left */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide in from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Add animation classes */
+.animate-slide-in-left {
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 1s ease-out forwards;
+}
+
+/* Projects section - remove border glow */
 #projects {
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
-}
-
-/* Improving projects section heading responsiveness */
-.section-heading {
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 2rem 0;
-    font-family: "Righteous", sans-serif;
-    background: linear-gradient(90deg, #6ab6c4, #8ccad4, #4fb6c9);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 0 1.5rem; /* Add padding to prevent text from touching edges */
-    line-height: 1.3; /* Improve line height for better readability */
-    margin-bottom: 1.5rem;
-}
-
-/* Adjust section heading size across breakpoints */
-@media (max-width: 1104px) {
-    .section-heading {
-        font-size: 2.25rem;
-    }
-}
-@media (max-width: 767px) {
-    .section-heading {
-        font-size: 1.5rem;
-        padding: 0 1rem;
-    }
-    
-    /* Fix for the spacing between sections on mobile */
-    #projects {
-        padding-top: 4rem !important; /* Force adequate spacing */
-        margin-top: 1rem;
-    }
-    
-    /* Add clear separation between the sections */
-    .section {
-        min-height: auto; /* Allow sections to be only as tall as needed */
-        padding-bottom: 2rem;
-    }
-    
-    /* Ensure skills box has bottom margin on mobile */
-    .skills-box {
-        margin-bottom: 3rem;
-    }
-    
-    /* Fix home section height to prevent overlap */
-    #home {
-        height: auto;
-        min-height: 100vh;
-        padding-bottom: 4rem;
-    }
-}
-
-/* Specifically for the projects section heading which is longer */
-#projects .section-heading {
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    justify-content: center;
     align-items: center;
+    padding: 2rem 1rem;
+    background-color: transparent;
+    border-radius: 1.5rem;
+    box-shadow: none; /* Remove the shadow/glow effect */
+}
+
+/* Also ensure light theme doesn't have a shadow either */
+body.light-theme #projects {
+    box-shadow: none;
+}
+
+/* Projects container grid */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
     margin-top: 2rem;
 }
 
+/* Project card styles */
 .project-card {
-    background-color: rgba(40, 40, 45, 0.85);
-    backdrop-filter: blur(5px);
-    color: #ffffff;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    width: 30rem;
-    height: auto;
+    background: rgba(255, 255, 255, 0.15); /* Transparent glass effect */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    border-radius: 1.5rem;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
+/* Project card hover styles - differentiate between light/dark themes */
+.project-card:hover {
+    transform: translateY(-10px); /* Lift the card for both themes */
+}
+
+/* Dark theme (default) hover effects */
+body:not(.light-theme) .project-card:hover {
+    box-shadow: 0 12px 30px rgba(79, 182, 201, 0.3); /* Blue shadow for dark theme */
+}
+
+body:not(.light-theme) .project-link {
+    background-color: #4fb6c9; /* Blue button for dark theme */
+    box-shadow: 0 4px 10px rgba(79, 182, 201, 0.3);
+}
+body:not(.light-theme) .project-description {
+    color:#dee2e6
+}
+body:not(.light-theme) .project-link:hover {
+    box-shadow: 0 6px 15px rgba(79, 182, 201, 0.5);
+}
+
+body:not(.light-theme) .project-title {
+    color: #4fb6c9; /* Blue title for dark theme */
+}
+
+/* Light theme hover effects (these already exist, but explicitly defining for clarity) */
+body.light-theme .project-card:hover {
+    box-shadow: 0 12px 30px rgba(255, 87, 71, 0.2); /* Keep coral shadow for light theme */
+}
+
+body.light-theme .project-link {
+    background-color: #FF5747; /* Coral button for light theme */
+    box-shadow: 0 4px 10px rgba(255, 87, 71, 0.3);
+}
+
+body.light-theme .project-link:hover {
+    box-shadow: 0 6px 15px rgba(255, 87, 71, 0.5);
+}
+
+body.light-theme .project-title {
+    color: #FF5747; /* Coral title for light theme */
+}
+
+/* Light theme Project cards */
+body.light-theme .project-card {
+    background-color: rgba(255, 245, 240, 0.75); /* More translucent */
+    backdrop-filter: blur(10px); /* Same blur effect as dark mode */
+    box-shadow: 0 8px 20px rgba(255, 87, 71, 0.1);
+    border: 1px solid rgba(255, 87, 71, 0.3);
+}
+
+/* Project image */
 .project-image {
     width: 100%;
-    max-width: 28rem;
-    height: 16rem;
+    height: 200px;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     margin-bottom: 1rem;
+    transition: transform 0.3s ease;
 }
 
+/* Hover effect for project image */
+.project-card:hover .project-image {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Project title */
 .project-title {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    color: #FF5747; /* Coral accent color */
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Project description */
 .project-description {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    color: #343A40; /* Darker gray for readability */
     margin-bottom: 1.5rem;
-    color: #f0f0f0;
+    line-height: 1.6;
 }
 
+/* Project link button */
 .project-link {
     display: inline-block;
     text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    background-color: #4fb6c9;
+    color: #fff;
+    background-color: #FF5747; /* Coral accent color */
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #8ccad4;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 87, 71, 0.3);
 }
 
+/* Hover effect for project link */
 .project-link:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9, 0 0 1.875rem #4fb6c9;
+    box-shadow: 0 6px 15px rgba(255, 87, 71, 0.5);
 }
 
 /* About section */
@@ -389,15 +472,6 @@
     padding: 2rem 1rem;
 }
 
-.about-image {
-    width: 9rem;
-    height: 9rem;
-    border-radius: 50%;
-    margin-bottom: 1.5rem;
-    border: 0.1875rem solid #4fb6c9;
-    box-shadow: 0 0 0.625rem #4fb6c9, 0 0 1.25rem #4fb6c9;
-}
-
 .education-header,
 .work-header,
 .skill-header {
@@ -405,11 +479,21 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-family: "Righteous", sans-serif;
-    background: linear-gradient(90deg, #6ab6c4, #8ccad4, #4fb6c9);
+    background: linear-gradient(90deg, #6ab6c4, #8ccad4, var(--accent-color));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: none;
+}
+
+body.light-theme .section-heading,
+body.light-theme .education-header,
+body.light-theme .work-header,
+body.light-theme .skill-header {
+    background: linear-gradient(90deg, #E64A19, #FF5747, #F44336);
+    background-clip: text;
+    -webkit-background-clip: text;
+    
 }
 
 .education-list {
@@ -421,7 +505,7 @@
 .education-list li {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    color: #d3d3d3;
+    color: var(--text-secondary);
 }
 
 .work,
@@ -429,28 +513,134 @@
 .vision {
     font-size: 1.25rem;
     line-height: 1.6;
-    color: #d3d3d3;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     max-width: 800px;
 }
 
-/* Contact section */
+/* Redesigned container styles for Education, Work Experience, and Skills */
+.info-card {
+    background: rgba(255, 255, 255, 0.15); /* Transparent glass effect */
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    border-radius: 1.5rem; /* Rounded corners */
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the cards */
+.info-card:hover {
+    transform: translateY(-10px); /* Lift the card */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+/* Headings inside the cards */
+.info-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #FF5747; /* Coral accent color */
+    font-family: "Righteous", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Text inside the cards */
+.info-card p,
+.info-card ul {
+    font-size: 1.25rem;
+    color: #343A40; /* Darker gray for readability */
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* List items inside the cards */
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card ul li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card ul li::before {
+    content: "•"; /* Bullet point */
+    color: #FF5747; /* Coral accent color */
+    font-size: 1.5rem;
+}
+
+/* Add subtle gradient background for the cards */
+body.light-theme .info-card {
+    background: rgba(255, 240, 230, 0.75); /* More translucent */
+    backdrop-filter: blur(10px); /* Same blur effect as dark mode */
+    border: 1px solid rgba(255, 87, 71, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 87, 71, 0.1);
+}
+
+body.light-theme .info-card:hover {
+    box-shadow: 0 12px 30px rgba(255, 87, 71, 0.2); /* Stronger coral shadow */
+}
+
+/* Dark theme styling for info cards */
+body:not(.light-theme) .info-card {
+    background: rgba(30, 40, 50, 0.25); /* Darker transparent background for dark mode */
+    border: 1px solid rgba(79, 182, 201, 0.3); /* Blue border */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Darker shadow */
+}
+
+/* Dark theme hover effect */
+body:not(.light-theme) .info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(79, 182, 201, 0.3); /* Blue glow on hover */
+    border: 1px solid rgba(79, 182, 201, 0.5); /* Enhanced border on hover */
+}
+
+/* Blue headers for dark mode */
+body:not(.light-theme) .info-card h2 {
+    color: #4fb6c9; /* Blue accent color */
+}
+
+/* White text for dark mode */
+body:not(.light-theme) .info-card p,
+body:not(.light-theme) .info-card ul li {
+    color: #e9ecef; /* Light text for dark theme */
+}
+
+/* Blue bullet points for dark mode */
+body:not(.light-theme) .info-card ul li::before {
+    content: "•"; /* Bullet point */
+    color: #4fb6c9; /* Blue accent color */
+    font-size: 1.5rem;
+}
+
+/* Contact section redesign */
 #contact {
     flex-direction: column;
     padding: 2rem 1rem;
     min-height: 70vh;
 }
 
-.contact-note {
-    text-align: center;
+/* Contact card container */
+.contact-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin: 1rem auto;
+    max-width: 800px;
+    gap: 2rem;
+    margin: 0 auto;
 }
 
 .section-description {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: #d3d3d3;
+    color: var(--text-secondary);
     max-width: 800px;
 }
 
@@ -552,21 +742,39 @@
     background: #e4405f;
     color: #fff;
 }
+.linkedin a:hover {
+    background: #0274b3;
+    color: #fff;
+}
 
+.linkedin a:hover .tooltip,
+.linkedin a:hover .tooltip::before {
+    background: #0274b3;
+    color: #fff;
+}
 .email a:hover {
-    background: #4fb6c9;
+    background: var(--accent-color);
     color: #fff;
 }
 
 .email a:hover .tooltip,
 .email a:hover .tooltip::before {
-    background: #4fb6c9;
+    background: var(--accent-color);
     color: #fff;
 }
 
-.linkedin a:hover {
-    background: #0274b3;
-    color: #fff;
+body.light-theme .email a:hover {
+    background: #FF6F61;
+}
+
+body.light-theme .email a:hover .tooltip,
+body.light-theme .email a:hover .tooltip::before {
+    background: #FF6F61;
+}
+
+.submit-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(79, 182, 201, 0.3);
 }
 
 .linkedin a:hover .tooltip,
@@ -589,8 +797,22 @@
 /* Canvas styling */
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #121212, #1a1a2e, #16213e);
+    background: linear-gradient(to bottom, #121212, #1a1a2e, #16213e); /* Original dark gradient */
     min-height: 100vh;
+    color: var(--text-primary);
+}
+
+body.light-theme {
+    background: linear-gradient(to bottom, #F8F9FA, #f1f3f5, #e9ecef); /* Original light gradient */
+}
+
+body:not(.light-theme) {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23232a40' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%231a2035'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"), 
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 800 800'%3E%3Cg fill='%231a1a2e' fill-opacity='0.4'%3E%3Ccircle r='3' cx='400' cy='400'/%3E%3Ccircle r='1.5' cx='300' cy='300'/%3E%3Ccircle r='1.2' cx='500' cy='300'/%3E%3Ccircle r='2' cx='700' cy='300'/%3E%3Ccircle r='1.4' cx='200' cy='400'/%3E%3Ccircle r='2.2' cx='600' cy='400'/%3E%3Ccircle r='1.8' cx='280' cy='530'/%3E%3Ccircle r='1.7' cx='520' cy='530'/%3E%3Ccircle r='1.1' cx='380' cy='220'/%3E%3Ccircle r='1.3' cx='620' cy='220'/%3E%3Ccircle r='1.9' cx='150' cy='200'/%3E%3Ccircle r='1.2' cx='700' cy='200'/%3E%3Ccircle r='1.3' cx='150' cy='600'/%3E%3Ccircle r='2.1' cx='700' cy='600'/%3E%3Ccircle r='1.4' cx='400' cy='100'/%3E%3Ccircle r='1.6' cx='400' cy='700'/%3E%3Ccircle r='1.1' cx='100' cy='400'/%3E%3Ccircle r='1.5' cx='700' cy='400'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-position: center;
+    background-color: #121212; /* Ensure very dark base */
+    background-blend-mode: normal;
 }
 
 canvas {
@@ -601,6 +823,309 @@ canvas {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+}
+
+.light-theme + canvas {
+    filter: hue-rotate(320deg) saturate(1.2); /* Shift to coral/pink */
+}
+
+/* Theme toggle floating button */
+.theme-toggle-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border-color: var(--card-border);
+}
+
+.theme-toggle-container:hover {
+    transform: scale(1.1);
+}
+
+/* Light theme Nav container */
+body.light-theme .nav-container {
+    background-color: rgba(255, 240, 230, 0.85); /* More translucent */
+    backdrop-filter: blur(5px); /* Add blur effect */
+    border: 1px solid rgba(255, 87, 71, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 87, 71, 0.1);
+}
+
+/* Switch styling */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #73C0FC;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2;
+    background-color: #e8e8e8;
+    transition: .4s;
+}
+
+.sun svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.moon svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.sun svg {
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.moon svg {
+    animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+body.light-theme .moon svg {
+    fill: #ffcdd2;
+}
+
+body.light-theme .slider {
+    background-color: #ffcdd2;
+}
+
+.input:checked + .slider {
+    background-color: #183153;
+}
+
+.input:focus + .slider {
+    box-shadow: 0 0 1px #183153;
+}
+
+.input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .theme-toggle-container {
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* Theme variables */
+:root {
+    /* Dark theme colors (default) */
+    --bg-gradient-1: #121212;
+    --bg-gradient-2: #1a1a2e;
+    --bg-gradient-3: #16213e;
+    --card-bg: rgba(40, 40, 45, 0.85);
+    --text-primary: #ffffff;
+    --text-secondary: #d3d3d3;
+    --accent-color: #4fb6c9;
+    --nav-link-color: #8f8a8a;
+    --card-border: #4fb6c9;
+}
+
+/* Light theme with improved colors and contrast */
+body.light-theme {
+    /* Keep existing gradient background */
+    --bg-gradient-1: #F8F9FA; /* Soft white-gray top */
+    --bg-gradient-2: #f1f3f5; /* Slightly darker middle */
+    --bg-gradient-3: #e9ecef; /* Gentle gray bottom */
+    
+    /* Boost accent color saturation */
+    --accent-color: #FF5747; /* Brighter coral red */
+    --card-border: #FF5747;
+    
+    /* Darker text for better contrast */
+    --text-primary: #212529; /* Much darker charcoal for headings */
+    --text-secondary: #343A40; /* Darker gray for body text */
+    --nav-link-color: #495057; /* Darker gray for navigation */
+    
+    /* Orange-tinted card backgrounds with higher opacity */
+    --card-bg: rgba(255, 250, 245, 0.98); /* Off-white with orange tint */
+}
+body.light-theme .name-title{
+    color:#212529;
+}
+body.light-theme .intro-text {
+    color: #343A40; /* Much darker charcoal for headings */
+
+}
+/* Make nav container more vibrant */
+body.light-theme .nav-container {
+    background-color: rgba(255, 240, 230, 0.85); /* More translucent */
+    backdrop-filter: blur(5px); /* Add blur effect */
+    border: 1px solid rgba(255, 87, 71, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 87, 71, 0.1);
+}
+
+/* Make skills box more vibrant */
+body.light-theme .skills-box {
+    background-color: rgba(255, 240, 230, 0.85); /* More translucent background */
+    backdrop-filter: blur(5px); /* Add blur effect for glassmorphism */
+    box-shadow: 0 5px 20px rgba(255, 87, 71, 0.15);
+    border: 1px solid rgba(255, 87, 71, 0.4);
+}
+
+/* Fix skills title color in light mode */
+body.light-theme .skills-title {
+    color: #212529; /* Dark color instead of light gray */
+    font-weight: 600; /* Make slightly bolder */
+}
+
+/* Fix skill name color in light mode */
+body.light-theme .skill-name {
+    color: #343A40; /* Dark instead of light gray */
+    font-weight: 500; /* Make slightly bolder */
+}
+
+/* Make project cards pop more */
+body.light-theme .project-card {
+    background-color: rgba(255, 245, 240, 0.75); /* More translucent */
+    backdrop-filter: blur(10px); /* Same blur effect as dark mode */
+    box-shadow: 0 8px 20px rgba(255, 87, 71, 0.1);
+    border: 1px solid rgba(255, 87, 71, 0.3);
+}
+
+/* Make theme toggle container match the design */
+body.light-theme .theme-toggle-container {
+    background-color: rgba(255, 240, 230, 0.97); /* Subtle orange tint */
+    border: 1px solid rgba(255, 87, 71, 0.4); /* Match other containers */
+    box-shadow: 0 5px 15px rgba(255, 87, 71, 0.15); /* Subtle accent shadow */
+}
+
+/* Enhanced nav links */
+body.light-theme .nav-link {
+    color: #343A40; /* Darker text color */
+    border: 1px solid rgba(255, 87, 71, 0.3); /* Subtle border */
+    background-color: rgba(255, 255, 255, 0.3); /* Subtle white background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Make active/hover state more vibrant */
+body.light-theme .nav-link:hover, 
+body.light-theme .nav-link.active {
+    background-color: #FF5747; /* Brighter coral */
+    border-color: #FF5747;
+    color: white;
+    box-shadow: 0 3px 10px rgba(255, 87, 71, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Add subtle texture to the background */
+body.light-theme {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23495057' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+}
+
+/* Tippy tooltips in coral theme */
+body.light-theme .tippy-box[data-theme~='light'] {
+    background-color: #FF6F61;
+}
+
+body.light-theme .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: #FF6F61;
+}
+
+/* Make nav links more modern */
+body.light-theme .nav-link {
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .nav-link:hover, 
+body.light-theme .nav-link.active {
+    background-color: #FF5747;
+    border-color: #FF5747;
+    color: white;
+}
+
+/* Update button glow in light mode */
+body.light-theme .cta-button,
+body.light-theme .project-link {
+    box-shadow: 0 0 1.25rem #FF6F61, 0 0 2.5rem rgba(255, 111, 97, 0.6);
+}
+
+body.light-theme .cta-button:hover,
+body.light-theme .project-link:hover {
+    box-shadow: 0 0 1.875rem #EF5350, 0 0 3.75rem #EF5350, 0 0 5.625rem rgba(239, 83, 80, 0.5);
+}
+
+/* Update the sun icon color for better visibility */
+body.light-theme .sun svg g {
+    fill: #FF6F61 !important; /* Coral sun color */
+}
+
+/* Add subtle card hover effects */
+body.light-theme .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Media Queries */
@@ -641,9 +1166,12 @@ canvas {
     #contact .section-description {
         text-align: center;
     }
+    #about {
+        padding-top: 10rem;
+    }
 }
 
-/* Tablet devices (768px - 1024px) */
+/* Tablet devices (768px - 1024.98px) */
 @media (min-width: 768px) and (max-width: 1024px) {
     .profile-image {
         width: 18rem;
@@ -667,9 +1195,12 @@ canvas {
     #projects .section-heading {
         padding-top: 8rem;
     }
+    #about {
+        padding-top: 10rem;
+    }
 }
 
-/* Desktop devices (1025px - 1499px) */
+/* Desktop devices (1025px - 1499.98px) */
 @media (min-width: 1025px) and (max-width: 1499px) {
     .profile-image {
         width: 22rem;
@@ -718,6 +1249,9 @@ canvas {
         font-size: 2.5rem;
         padding-top: 4rem;
     }
+    #about {
+        padding-top: 10rem;
+    }
 }
 
 /* Large desktop devices (1500px and above) */
@@ -735,6 +1269,7 @@ canvas {
         top: 11rem;
         left: 12rem;
         margin: 0;
+        
     }
     
     #home .content-wrapper {
@@ -759,8 +1294,8 @@ canvas {
         position: absolute;
         width: 33rem;
         height: 7rem;
-        top: 32rem;
-        right: 12rem;
+        top: 16rem;
+        right: 0rem;
         margin: 0;
     }
     
@@ -784,6 +1319,9 @@ canvas {
         width: 6rem;
         height: 6rem;
     }
+    #about {
+        padding-top: 6rem;
+    }
 }
 
 /* Increase spacing between nav items on larger screens */
@@ -796,6 +1334,18 @@ canvas {
     
 }
 
+/* Specific fix for 1025px-1032px navigation issue */
+@media (min-width: 1025px) and (max-width: 1032px) {
+    .nav-wrapper {
+        gap: 2rem; /* Reduced gap for this specific range */
+    }
+    
+    .nav-link {
+        font-size: 1.3rem; /* Slightly smaller font */
+        padding: 0.4rem 0.6rem; /* Slightly reduced padding */
+    }
+}
+
 @media (max-width: 1499px) {
     #home {
         padding-top: 6.3rem;
@@ -804,12 +1354,12 @@ canvas {
     
 /* Fix for tippy.js tooltips */
 .tippy-box[data-theme~='light'] {
-    background-color: #4fb6c9;
+    background-color: var(--accent-color);
     color: white;
 }
 
 .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before {
-    border-top-color: #4fb6c9;
+    border-top-color: var(--accent-color);
 }
 
 /* Small mobile devices (425px and below) */
@@ -892,5 +1442,17 @@ canvas {
     }
 }
 
+/* Projects container adjustments for smaller screens */
+@media (max-width: 1250px) {
+    #projects .projects-container {
+        display: flex;
+        flex-direction: column; /* Stack the cards vertically */
+        align-items: center; /* Center the cards */
+        gap: 2rem; /* Add spacing between cards */
+    }
 
-
+    .project-card {
+        width: 90%; /* Make the cards take up most of the width */
+        max-width: 600px; /* Set a reasonable max width */
+    }
+}
