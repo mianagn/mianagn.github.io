@@ -27,12 +27,15 @@
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
+    <!-- Animate.css library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    
     <title>Michael Anagnostou's Portfolio</title>
   </head>
   <body>
     <div id="home" class="section">
       <div class="nav-container">
-        <div class="nav-wrapper">
+        <div class="nav-wrapper  animate__animated animate__bounceInDown">
           <div class="nav-item">
             <a href="#home" class="nav-link">Home</a>
           </div>
@@ -49,19 +52,19 @@
       </div>
       
       <div class="home-content">
-        <img class="profile-image" src="images/cropped_image.png" alt="Profile Picture" />
+        <img class="profile-image animate__animated animate__slideInLeft" src="images/cropped_image.png" alt="Profile Picture" />
         <div class="content-wrapper">
-          <h1 class="name-title">mianagn</h1>
-          <p class="intro-text">
+          <h1 class="name-title animate-slide-in-right">mianagn</h1>
+          <p class="intro-text animate-slide-in-right">
             Hello! My name is Michael Anagnostou. Welcome to my portfolio! I am a 4th-year Computer Science
-            student at DUTH and an aspiring front-end developer passionate about building intuitive
+            student at DUTH from Greece and an aspiring front-end developer passionate about building intuitive
             user experiences.
           </p>
+          <div class="cta-button animate-slide-in-right">
+            <div class="cta-text">Let's get started</div>
+          </div>
         </div>
-        <div class="cta-button">
-          <div class="cta-text">Lets get started</div>
-        </div>
-        <div class="skills-box">
+        <div class="skills-box animate-slide-in-left">
           <div class="skills-title">Current skills:</div>
           <ul class="skills-list">
             <li class="skill-item">
@@ -85,41 +88,73 @@
       </div>
     </div>
 
+    <!-- Theme toggle button (floating) -->
+    <div class="theme-toggle-container">
+      <label class="switch">
+        <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+        <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
+        <input type="checkbox" class="input" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
     <div id="projects" class="section">
       <h1 class="section-heading">
-        I enjoy building projects to mark major milestones in my learning journey. Here are a few.
+        My Projects
       </h1>
       <div class="projects-container">
+        <!-- Project 1 -->
         <div class="project-card">
           <img src="images/personalPortfolio.png" alt="Personal Portfolio" class="project-image">
           <h2 class="project-title">Personal Portfolio</h2>
-          <p class="project-description">An interactive portfolio website built with html/css/JS</p>
-          <a href="https://github.com/mianagn/PersonalPortfolio" target="_blank" class="project-link">Github repo</a>
+          <p class="project-description">
+            An interactive portfolio website built with HTML, CSS, and JavaScript.
+          </p>
+          <a href="https://github.com/mianagn/PersonalPortfolio" target="_blank" class="project-link">View on GitHub</a>
         </div>
+
+        <!-- Project 2 -->
         <div class="project-card">
           <img src="images/Warrior.VS.Aliens.png" alt="Warrior VS Aliens" class="project-image">
           <h2 class="project-title">Warrior VS Aliens</h2>
-          <p class="project-description">Text game where you face off a wave of zombies in turn-based combat, built with Java</p>
-          <a href="https://github.com/mianagn/Warrior.VS.Aliens" target="_blank" class="project-link">Github repo</a>
+          <p class="project-description">
+            A text-based game where you face waves of zombies in turn-based combat, built with Java.
+          </p>
+          <a href="https://github.com/mianagn/Warrior.VS.Aliens" target="_blank" class="project-link">View on GitHub</a>
         </div>
+
+        <!-- Add more projects as needed -->
       </div>
     </div>
 
     <div id="about" class="section">
-      <h1 class="section-heading">About me.</h1>
-      <img src="images/pfp.png" alt="Profile Picture" class="about-image">
-      <h2 class="education-header">Education:</h2>
-      <ul class="education-list">
-        <li>Computer Science undergrad</li>
-        <li>C2 Proficiency English</li>
-        <li>High School Diploma</li>
-      </ul>
-      <h2 class="work-header">Work experience:</h2>
-      <p class="work">I am currently seeking an internship to gain hands-on experience in the field of Computer Science</p>
-      <h2 class="skill-header">Skills:</h2>
-      <p class="skills">I specialize in Java, HTML, CSS, and JavaScript. 
-        I am also continuously learning new tools and technologies to expand my skillset</p>
-      <p class="vision">I want this website to serve as an evolving project, where I will be integrating new technologies and features as I learn them.</p>
+      <h1 class="section-heading">About Me</h1>
+
+      <!-- Education Card -->
+      <div class="info-card">
+        <h2>Education</h2>
+        <ul>
+          <li>Computer Science Undergraduate</li>
+          <li>C2 Proficiency in English</li>
+          <li>High School Diploma</li>
+        </ul>
+      </div>
+
+      <!-- Work Experience Card -->
+      <div class="info-card">
+        <h2>Work Experience</h2>
+        <p>I am currently seeking an internship to gain hands-on experience in the field of Computer Science.</p>
+      </div>
+
+      <!-- Skills Card -->
+      <div class="info-card">
+        <h2>Skills</h2>
+        <ul>
+          <li>Java</li>
+          <li>HTML, CSS, and JavaScript</li>
+        </ul>
+        <p>I am continuously learning new tools and technologies to expand my skillset.</p>
+      </div>
     </div>
 
     <div id="contact" class="section">
