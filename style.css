@@ -275,12 +275,34 @@
         font-size: 2.25rem;
     }
 }
-
-
 @media (max-width: 767px) {
     .section-heading {
         font-size: 1.5rem;
         padding: 0 1rem;
+    }
+    
+    /* Fix for the spacing between sections on mobile */
+    #projects {
+        padding-top: 4rem !important; /* Force adequate spacing */
+        margin-top: 1rem;
+    }
+    
+    /* Add clear separation between the sections */
+    .section {
+        min-height: auto; /* Allow sections to be only as tall as needed */
+        padding-bottom: 2rem;
+    }
+    
+    /* Ensure skills box has bottom margin on mobile */
+    .skills-box {
+        margin-bottom: 3rem;
+    }
+    
+    /* Fix home section height to prevent overlap */
+    #home {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 4rem;
     }
 }
 
