@@ -304,3 +304,193 @@ document.addEventListener('DOMContentLoaded', () => {
         currentSection = 1; // Update current section variable
     });
 });
+
+// ----- Theme Toggle Functionality -----
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference or use device preference
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Set initial theme - FIXED LOGIC
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeToggle.checked = false; // Unchecked = sun/light mode
+    } else if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggle.checked = true; // Checked = moon/dark mode
+    } else if (prefersDarkScheme.matches) {
+        document.body.classList.add('dark-theme');
+        themeToggle.checked = true;
+    } else {
+        document.body.classList.add('light-theme');
+        themeToggle.checked = false;
+    }
+    
+    // Toggle theme when switch is clicked - FIXED LOGIC
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.replace('light-theme', 'dark-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.replace('dark-theme', 'light-theme');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+});
+
+// ----- Update WebGL Cursor Trails on Theme Change -----
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Reference to the canvas element
+    const canvas = document.querySelector('canvas');
+    
+    // Function to update cursor trail colors based on theme
+    function updateCursorTrailColors() {
+        if (document.body.classList.contains('light-theme')) {
+            // Light theme - adjust cursor trail to match site purple
+            if (canvas) {
+                canvas.style.filter = 'hue-rotate(-160deg) saturate(1.5)';
+            }
+        } else {
+            // Dark theme - reset to original colors
+            if (canvas) {
+                canvas.style.filter = 'none';
+            }
+        }
+    }
+    
+    // Initial update
+    updateCursorTrailColors();
+    
+    // Listen for theme toggle changes
+    document.getElementById('theme-toggle').addEventListener('change', updateCursorTrailColors);
+});
+
+// Remove duplicate DOM-loaded event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const profileImage = document.querySelector('.profile-image');
+
+    // Check if dark mode is active
+    if (document.body.classList.contains('dark-theme')) {
+        // Force reflow to ensure the animation is applied
+        profileImage.offsetHeight; // Trigger reflow
+        profileImage.classList.add('animate-border');
+    }
+});
+
+// Theme toggle animation handler
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Function to reset and trigger animations
+    function resetAndTriggerAnimations() {
+        // Animate.css animations
+        const navWrapper = document.querySelector('.nav-wrapper');
+        navWrapper.classList.remove('animate__animated', 'animate__bounceInDown');
+        const profileImg = document.querySelector('.profile-image');
+        profileImg.classList.remove('animate__animated', 'animate__slideInLeft');
+        
+        // Force reflow
+        void document.documentElement.offsetHeight;
+        
+        // Add animations back
+        navWrapper.classList.add('animate__animated', 'animate__bounceInDown');
+        profileImg.classList.add('animate__animated', 'animate__slideInLeft');
+        
+        // Custom animations
+        const elementsToAnimate = {
+            left: [
+                document.querySelector('.skills-box'),
+                document.querySelector('.profile-image')
+            ],
+            right: [
+                document.querySelector('.name-title'),
+                document.querySelector('.intro-text'),
+                document.querySelector('.cta-button')
+            ]
+        };
+        
+        // Remove animation classes
+        elementsToAnimate.left.forEach(el => {
+            if (el) el.classList.remove('animate-slide-in-left');
+        });
+        
+        elementsToAnimate.right.forEach(el => {
+            if (el) el.classList.remove('animate-slide-in-right');
+        });
+        
+        // Force reflow again
+        void document.documentElement.offsetHeight;
+        
+        // Add animation classes back after a short delay
+        setTimeout(() => {
+            elementsToAnimate.left.forEach(el => {
+                if (el) el.classList.add('animate-slide-in-left');
+            });
+            
+            elementsToAnimate.right.forEach(el => {
+                if (el) el.classList.add('animate-slide-in-right');
+            });
+        }, 50);
+    }
+    
+    // Listen for theme toggle changes
+    themeToggle.addEventListener('change', resetAndTriggerAnimations);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const profileImage = document.querySelector('.profile-image');
+
+    // Initial animation on page load (after 300ms)
+    setTimeout(() => {
+        profileImage.classList.add('animate-border');
+    }, 300);
+
+    // Listen for theme toggle changes
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', function() {
+        // When toggling themes, briefly remove the border and then reapply it
+        profileImage.classList.remove('animate-border');
+        
+        // Wait for transition to complete, then reapply the border
+        setTimeout(() => {
+            profileImage.classList.add('animate-border');
+        }, 800); // Slightly longer than the CSS transition time
+    });
+});
+
+// Remove unused WebGL reinitialization function
+function initWebGLCursorEffect() {
+    // This is a simplified version just to trigger reinitialization
+    // The main initialization is in the module import
+    const existingCanvas = document.querySelector('canvas');
+    if (existingCanvas) {
+        existingCanvas.remove();
+    }
+    
+    // Let the main script create a new canvas
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'script.js';
+    document.body.appendChild(script);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Add animation classes to elements
+    const skillsBox = document.querySelector('.skills-box');
+    const profileImage = document.querySelector('.profile-image');
+    const nameTitle = document.querySelector('.name-title');
+    const introText = document.querySelector('.intro-text');
+    const ctaButton = document.querySelector('.cta-button');
+
+    // Trigger animations
+    skillsBox.classList.add('animate-slide-in-left');
+    profileImage.classList.add('animate-slide-in-left');
+    nameTitle.classList.add('animate-slide-in-right');
+    introText.classList.add('animate-slide-in-right');
+    ctaButton.classList.add('animate-slide-in-right');
+});
