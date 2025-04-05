@@ -339,6 +339,34 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.replace('dark-theme', 'light-theme');
             localStorage.setItem('theme', 'light');
         }
+        
+        // Update project images based on theme
+        const lightThemeImages = document.querySelectorAll('.light-theme-img');
+        const darkThemeImages = document.querySelectorAll('.dark-theme-img');
+        
+        if (this.checked) {
+            // Dark theme - fade in dark images, fade out light images
+            lightThemeImages.forEach(img => {
+                img.style.opacity = 0;
+                setTimeout(() => { img.style.display = 'none'; }, 300);
+            });
+            
+            darkThemeImages.forEach(img => {
+                img.style.display = 'block';
+                setTimeout(() => { img.style.opacity = 1; }, 50);
+            });
+        } else {
+            // Light theme - fade in light images, fade out dark images
+            darkThemeImages.forEach(img => {
+                img.style.opacity = 0;
+                setTimeout(() => { img.style.display = 'none'; }, 300);
+            });
+            
+            lightThemeImages.forEach(img => {
+                img.style.display = 'block';
+                setTimeout(() => { img.style.opacity = 1; }, 50);
+            });
+        }
     });
 });
 
