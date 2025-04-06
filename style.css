@@ -1255,52 +1255,58 @@ body.light-theme .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy
 @media (min-width: 1550px) {
     #home .home-content {
         max-width: 1600px;
-        position: relative;
+        position: absolute;
         height: calc(100vh - 7rem);
     }
     
     #home .profile-image {
-        position: absolute;
+        position: relative;
         width: 28rem;
         height: 28rem;
-        top: 11rem;
-        left: 12rem;
+        top: 9rem;
+        right: 23.4rem;
         margin: 0;
     }
     
     #home .content-wrapper {
-        position: absolute;
+        position: relative;
         top: 14rem;
         right: 12rem;
         width: 40rem;
     }
     
     #home .name-title {
+        position:relative;
         text-align: right;
         font-size: 6rem;
+        left:29.3rem;
+        bottom:26rem;
     }
     
     #home .intro-text {
+        position:relative;
         text-align: right;
         width: 33rem;
         margin: 0 0 0 auto;
+        left:29.3rem;
+        bottom:26rem;
     }
     
     #home .cta-button {
-        position: absolute;
+        position: relative;
         width: 33rem;
         height: 7rem;
-        top: 16rem;
-        right: 0rem;
+        left:49.3rem;
         margin: 0;
+        bottom:24rem;
     }
     
     #home .skills-box {
-        position: absolute;
+        position: relative;
         width: 50rem;
         height: auto;
         bottom: 5rem;
-        left: 12rem;
+        right:22.6rem;
         margin: 0;
         padding: 1.3rem 2rem;
     }
