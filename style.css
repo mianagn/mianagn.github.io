@@ -1280,7 +1280,7 @@ body.light-theme .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy
         text-align: right;
         font-size: 6rem;
         left:29.3rem;
-        bottom:26rem;
+        bottom:28.3rem;
     }
     
     #home .intro-text {
@@ -1289,7 +1289,7 @@ body.light-theme .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy
         width: 33rem;
         margin: 0 0 0 auto;
         left:29.3rem;
-        bottom:26rem;
+        bottom:29.3rem;
     }
     
     #home .cta-button {
@@ -1298,14 +1298,14 @@ body.light-theme .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy
         height: 7rem;
         left:49.3rem;
         margin: 0;
-        bottom:24rem;
+        bottom:26.3rem;
     }
     
     #home .skills-box {
         position: relative;
         width: 50rem;
         height: auto;
-        bottom: 5rem;
+        bottom: 10rem;
         right:22.6rem;
         margin: 0;
         padding: 1.3rem 2rem;
