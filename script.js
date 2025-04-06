@@ -17,8 +17,8 @@ import {
 } from 'https://cdn.jsdelivr.net/npm/ogl@0.0.25/dist/ogl.mjs';
 
 /**
- * GLSL vertex shader for line rendering
- * Creates smooth animated lines with proper width and tapering
+ * WebGL Cursor Trail Effect
+ * Creates interactive lines that follow the cursor with physics simulation
  */
 const vertex = `
     // Vertex shader for curve effect
@@ -205,8 +205,8 @@ const navButtons = document.querySelectorAll(".nav-link");
 let isScrolling = false;
 
 /**
- * Scroll to a specific section with smooth animation
- * @param {number} index - Index of the section to scroll to
+ * Smooth Section Navigation
+ * Enables wheel and button navigation between sections
  */
 function scrollToSection(index) {
     // Validate index and check if already scrolling
@@ -305,8 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ----- Theme Toggle Functionality -----
-
+/**
+ * Theme System
+ * Handles theme switching with persistence and smooth transitions
+ */
 document.addEventListener('DOMContentLoaded', () => {
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');

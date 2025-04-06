@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.min.css" />
     
     <!-- Tooltip library -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
@@ -33,25 +33,27 @@
     <title>Michael Anagnostou's Portfolio</title>
   </head>
   <body>
-    <div id="home" class="section">
-      <div class="nav-container">
-        <div class="nav-wrapper  animate__animated animate__bounceInDown">
-          <div class="nav-item">
-            <a href="#home" class="nav-link">Home</a>
-          </div>
-          <div class="nav-item">
-            <a href="#projects" class="nav-link">Projects</a>
-          </div>
-          <div class="nav-item">
-            <a href="#about" class="nav-link">About</a>
-          </div>
-          <div class="nav-item">
-            <a href="#contact" class="nav-link">Contact</a>
-          </div>
+    <!-- Navigation with fixed position -->
+    <div class="nav-container">
+      <div class="nav-wrapper  animate__animated animate__bounceInDown">
+        <div class="nav-item">
+          <a href="#home" class="nav-link">Home</a>
+        </div>
+        <div class="nav-item">
+          <a href="#projects" class="nav-link">Projects</a>
+        </div>
+        <div class="nav-item">
+          <a href="#about" class="nav-link">About</a>
+        </div>
+        <div class="nav-item">
+          <a href="#contact" class="nav-link">Contact</a>
         </div>
       </div>
-      
+    </div>
+    
+    <div id="home" class="section">
       <div class="home-content">
+        <!-- Profile section with animated entry -->
         <img class="profile-image animate__animated animate__slideInLeft" src="images/cropped_image.png" alt="Profile Picture" />
         <div class="content-wrapper">
           <h1 class="name-title animate-slide-in-right">mianagn</h1>
@@ -88,7 +90,7 @@
       </div>
     </div>
 
-    <!-- Theme toggle button (floating) -->
+    <!-- Dynamic theme toggle with sun/moon animation -->
     <div class="theme-toggle-container">
       <label class="switch">
         <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
@@ -103,7 +105,7 @@
         My Projects
       </h1>
       <div class="projects-container">
-        <!-- Project 1 -->
+        <!-- Project cards with theme-specific images -->
         <div class="project-card">
           <img src="images/PortfolioDarkMode.png" alt="Personal Portfolio" class="project-image dark-theme-img">
           <img src="images/PortfolioLightMode.png" alt="Personal Portfolio" class="project-image light-theme-img">
@@ -161,6 +163,7 @@
     <div id="contact" class="section">
       <h1 class="section-heading">Contact Me</h1>
       <p class="section-description">Feel free to reach out to me through any of the following:</p>
+      <!-- Social media links with interactive tooltips -->
       <ul class="social-links">
         <li class="social-item facebook">
           <a href="https://www.facebook.com/profile.php?id=100004834873216" target="_blank" aria-label="Facebook">

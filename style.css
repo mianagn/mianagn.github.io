@@ -12,8 +12,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 70vh; /* Default lower for most sections */
     color: var(--text-primary);
+    padding: 3rem 1rem;
+    width: 100%;
 }
 
 /* Revert section heading styles */
@@ -25,17 +27,18 @@
     font-family: "Righteous", sans-serif;
 }
 
-/* Home section base layout - Mobile-first approach */
+/* Home section base layout */
 #home {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
+    min-height: 120vh; /* Taller for home with skills box */
     overflow: hidden;
     z-index: 1;
-    padding-top: 5rem; /* Space for the fixed navigation */
+    padding-top: 5rem; /* Space for navigation */
+    padding-bottom: 2rem;
 }
 
 /* Fixed navigation with translucent background */
@@ -117,38 +120,32 @@
     border-radius: 50%;
     object-fit: cover;
     margin: 2rem auto;
-    border: 0.6rem solid transparent; /* Start with transparent border */
+    border: 0.6rem solid transparent; /* For animation */
     transition: border-color 0.6s ease-in-out;
 }
 
-/* Profile image border animation */
+/* Profile image border animations */
 body.light-theme .profile-image.animate-border {
-    border-color: #FF5747; /* Coral border color */
+    border-color: #FF5747; /* Coral for light theme */
 }
-body.dark-theme .profile-image.animate-border {
-    border-color: #4fb6c9; /* Blue border color */
-}
-
-/* Name */
-.name-title {
-    font-size: 3.5rem;
-    border: 0.6rem solid transparent; /* Start with no visible border */
-    transition: border-color 1s ease-in-out;
+body:not(.light-theme) .profile-image.animate-border {
+    border-color: #4fb6c9; /* Blue for dark theme */
 }
 
-/* Name */
+/* Name title */
 .name-title {
     font-size: 3.5rem;
-    color: #f5f5f5;
+    color: var(--text-primary);
     text-align: center;
     width: 100%;
     margin-bottom: 1rem;
+    transition: border-color 1s ease-in-out;
 }
 
 /* Introduction text */
 .intro-text {
     width: 90%;
-    color: #f0f0f0;
+    color: var(--text-secondary);
     font-size: 1.125rem;
     text-align: center;
     margin: 0 auto 2rem;
@@ -158,30 +155,29 @@ body.dark-theme .profile-image.animate-border {
 .cta-button {
     width: 90%;
     max-width: 20rem;
-    height: auto;
     min-height: 4rem;
     background-color: var(--accent-color);
     border-radius: 8px;
     font-weight: 500;
     letter-spacing: 0.5px;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     margin: 0 auto 2rem;
-    box-shadow: 0 0 1.25rem var(--accent-color), 0 0 2.5rem var(--accent-color), 0 0 3.75rem var(--accent-color);
+    box-shadow: 0 0 1.25rem var(--accent-color), 0 0 2.5rem var(--accent-color);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1.875rem var(--accent-color), 0 0 3.75rem var(--accent-color);
 }
 
 .cta-text {
     color: var(--text-primary);
     font-size: 1.5rem;
     text-align: center;
-}
-
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 1.875rem var(--accent-color), 0 0 3.75rem var(--accent-color), 0 0 5.625rem var(--accent-color);
 }
 
 /* Skills section */
@@ -319,15 +315,16 @@ body.light-theme .skill-logo.fa-brands {
     animation: slideInRight 1s ease-out forwards;
 }
 
-/* Projects section - remove border glow */
+/* Projects section - slightly taller than base */
 #projects {
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
     background-color: transparent;
     border-radius: 1.5rem;
-    box-shadow: none; /* Remove the shadow/glow effect */
+    box-shadow: none;
 }
 
 /* Also ensure light theme doesn't have a shadow either */
@@ -506,8 +503,9 @@ body.light-theme .dark-theme-img {
   display: none; /* Hide dark theme image when light theme is active */
 }
 
-/* About section */
+/* About section - standard height */
 #about {
+    min-height: 70vh;
     flex-direction: column;
     text-align: center;
     padding: 2rem 1rem;
@@ -661,11 +659,11 @@ body:not(.light-theme) .info-card ul li::before {
     font-size: 1.5rem;
 }
 
-/* Contact section redesign */
+/* Contact section - shorter is fine */
 #contact {
+    min-height: 60vh;
     flex-direction: column;
     padding: 2rem 1rem;
-    min-height: 70vh;
 }
 
 /* Contact card container */
@@ -718,11 +716,19 @@ body:not(.light-theme) .info-card ul li::before {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #fff;
-    color: #333;
     text-decoration: none;
     transition: all 0.3s;
 }
+body.light-theme .social-item a {
+    background: #333;
+    color: #e8e8e8;
+}
+body:not(.light-theme) .social-item a {
+    background: #fff;
+    color: #333;
+}
+
+
 
 .tooltip {
     position: absolute;
@@ -741,7 +747,6 @@ body:not(.light-theme) .info-card ul li::before {
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     text-align: center;
 }
-
 .tooltip::before {
     position: absolute;
     content: "";
@@ -803,16 +808,6 @@ body:not(.light-theme) .info-card ul li::before {
     background: var(--accent-color);
     color: #fff;
 }
-
-body.light-theme .email a:hover {
-    background: #FF6F61;
-}
-
-body.light-theme .email a:hover .tooltip,
-body.light-theme .email a:hover .tooltip::before {
-    background: #FF6F61;
-}
-
 .submit-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(79, 182, 201, 0.3);
@@ -835,14 +830,36 @@ body.light-theme .email a:hover .tooltip::before {
     color: #fff;
 }
 
+
+/* Base hover behaviors for social items in light theme */
+body.light-theme .facebook a:hover,
+body.light-theme .instagram a:hover,
+body.light-theme .linkedin a:hover,
+body.light-theme .github a:hover,
+body.light-theme .email a:hover {
+    color: #ffffff; /* White text on hover for all social icons */
+}
+
+/* Specific hover colors for light theme */
+body.light-theme .facebook a:hover { background: #1877f2; }
+body.light-theme .instagram a:hover { background: #e4405f; }
+body.light-theme .linkedin a:hover { background: #0274b3; }
+body.light-theme .github a:hover { background: #6f2679; }
+body.light-theme .email a:hover { background: #FF5747; } /* Match light theme accent */
+
+/* Dark theme hover styles (already defined, but explicitly added for clarity) */
+body:not(.light-theme) .facebook a:hover { background: #1877f2; }
+body:not(.light-theme) .instagram a:hover { background: #e4405f; }
+body:not(.light-theme) .linkedin a:hover { background: #0274b3; }
+body:not(.light-theme) .github a:hover { background: #6f2679; }
+body:not(.light-theme) .email a:hover { background: #4fb6c9; } /* Match dark theme accent */
+
 /* Center contact note on all screen sizes */
 .contact-note {
     text-align: center;
     font-size: 1.2rem;
     margin: 2rem auto 0;
-    padding: 1rem;
     max-width: 90%;
-
     border-radius: 0.5rem;
     backdrop-filter: blur(5px);
 }
@@ -878,9 +895,10 @@ canvas {
     z-index: -1;
 }
 
-.light-theme + canvas {
-    filter: hue-rotate(320deg) saturate(1.2); /* Shift to coral/pink */
-}
+/*.light-theme + canvas {
+    filter: hue-rotate(320deg) saturate(1.2); /* Shift to coral/pink 
+}*/
+
 
 /* Theme toggle floating button */
 .theme-toggle-container {
@@ -1485,12 +1503,10 @@ body.light-theme .project-card:hover {
         margin: 2rem auto;
         padding: 0.8rem;
         font-size: 1.1rem;
+        margin-top: 4rem;
     }
     
     /* Remove the padding-top that was pushing it down too far */
-    .contact-note {
-        padding-top: 1rem;
-    }
     
     /* Ensure proper spacing in contact section */
     #contact {
@@ -1568,8 +1584,6 @@ body.light-theme .project-card:hover {
         margin-bottom: 5rem; /* More margin on smallest screens */
     }
 }
-
-
 
 
 
