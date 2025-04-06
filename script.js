@@ -429,9 +429,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for theme toggle changes
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle.addEventListener('change', function() {
+        // Profile image border animation (already working)
         profileImage.classList.remove('animate-border');
+        
+        // Remove all animations first
+        skillsBox.classList.remove('animate-slide-in-left');
+        profileImage.classList.remove('animate-slide-in-left');
+        nameTitle.classList.remove('animate-slide-in-right');
+        introText.classList.remove('animate-slide-in-right');
+        ctaButton.classList.remove('animate-slide-in-right');
+        
+        // Force reflow to ensure animations can be re-triggered
+        void profileImage.offsetWidth;
+        void skillsBox.offsetWidth;
+        void nameTitle.offsetWidth;
+        void introText.offsetWidth;
+        void ctaButton.offsetWidth;
+        
+        // Re-add all animations with a slight delay
         setTimeout(() => {
+            // Re-apply all animations
+            skillsBox.classList.add('animate-slide-in-left');
+            profileImage.classList.add('animate-slide-in-left');
+            nameTitle.classList.add('animate-slide-in-right');
+            introText.classList.add('animate-slide-in-right');
+            ctaButton.classList.add('animate-slide-in-right');
             profileImage.classList.add('animate-border');
-        }, 800); // Slightly longer than the CSS transition time
+        }, 50);
     });
 });
