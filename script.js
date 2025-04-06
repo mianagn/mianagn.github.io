@@ -400,117 +400,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('theme-toggle').addEventListener('change', updateCursorTrailColors);
 });
 
-// Remove duplicate DOM-loaded event listeners
+// Combined DOM-loaded event listener for animations
 document.addEventListener('DOMContentLoaded', () => {
-    const profileImage = document.querySelector('.profile-image');
-
-    // Check if dark mode is active
-    if (document.body.classList.contains('dark-theme')) {
-        // Force reflow to ensure the animation is applied
-        profileImage.offsetHeight; // Trigger reflow
-        profileImage.classList.add('animate-border');
-    }
-});
-
-// Theme toggle animation handler
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    
-    // Function to reset and trigger animations
-    function resetAndTriggerAnimations() {
-        // Animate.css animations
-        const navWrapper = document.querySelector('.nav-wrapper');
-        navWrapper.classList.remove('animate__animated', 'animate__bounceInDown');
-        const profileImg = document.querySelector('.profile-image');
-        profileImg.classList.remove('animate__animated', 'animate__slideInLeft');
-        
-        // Force reflow
-        void document.documentElement.offsetHeight;
-        
-        // Add animations back
-        navWrapper.classList.add('animate__animated', 'animate__bounceInDown');
-        profileImg.classList.add('animate__animated', 'animate__slideInLeft');
-        
-        // Custom animations
-        const elementsToAnimate = {
-            left: [
-                document.querySelector('.skills-box'),
-                document.querySelector('.profile-image')
-            ],
-            right: [
-                document.querySelector('.name-title'),
-                document.querySelector('.intro-text'),
-                document.querySelector('.cta-button')
-            ]
-        };
-        
-        // Remove animation classes
-        elementsToAnimate.left.forEach(el => {
-            if (el) el.classList.remove('animate-slide-in-left');
-        });
-        
-        elementsToAnimate.right.forEach(el => {
-            if (el) el.classList.remove('animate-slide-in-right');
-        });
-        
-        // Force reflow again
-        void document.documentElement.offsetHeight;
-        
-        // Add animation classes back after a short delay
-        setTimeout(() => {
-            elementsToAnimate.left.forEach(el => {
-                if (el) el.classList.add('animate-slide-in-left');
-            });
-            
-            elementsToAnimate.right.forEach(el => {
-                if (el) el.classList.add('animate-slide-in-right');
-            });
-        }, 50);
-    }
-    
-    // Listen for theme toggle changes
-    themeToggle.addEventListener('change', resetAndTriggerAnimations);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const profileImage = document.querySelector('.profile-image');
-
-    // Initial animation on page load (after 300ms)
-    setTimeout(() => {
-        profileImage.classList.add('animate-border');
-    }, 300);
-
-    // Listen for theme toggle changes
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('change', function() {
-        // When toggling themes, briefly remove the border and then reapply it
-        profileImage.classList.remove('animate-border');
-        
-        // Wait for transition to complete, then reapply the border
-        setTimeout(() => {
-            profileImage.classList.add('animate-border');
-        }, 800); // Slightly longer than the CSS transition time
-    });
-});
-
-// Remove unused WebGL reinitialization function
-function initWebGLCursorEffect() {
-    // This is a simplified version just to trigger reinitialization
-    // The main initialization is in the module import
-    const existingCanvas = document.querySelector('canvas');
-    if (existingCanvas) {
-        existingCanvas.remove();
-    }
-    
-    // Let the main script create a new canvas
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'script.js';
-    document.body.appendChild(script);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Add animation classes to elements
     const skillsBox = document.querySelector('.skills-box');
     const profileImage = document.querySelector('.profile-image');
     const nameTitle = document.querySelector('.name-title');
@@ -523,4 +414,24 @@ document.addEventListener('DOMContentLoaded', () => {
     nameTitle.classList.add('animate-slide-in-right');
     introText.classList.add('animate-slide-in-right');
     ctaButton.classList.add('animate-slide-in-right');
+
+    // Profile border animation
+    if (document.body.classList.contains('dark-theme')) {
+        profileImage.offsetHeight; // Trigger reflow
+        profileImage.classList.add('animate-border');
+    }
+
+    // Initial animation on page load (after 300ms)
+    setTimeout(() => {
+        profileImage.classList.add('animate-border');
+    }, 300);
+
+    // Listen for theme toggle changes
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', function() {
+        profileImage.classList.remove('animate-border');
+        setTimeout(() => {
+            profileImage.classList.add('animate-border');
+        }, 800); // Slightly longer than the CSS transition time
+    });
 });
