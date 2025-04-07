@@ -776,7 +776,7 @@ body:not(.light-theme) .info-card ul li::before {
 
 /* Show tooltip on hover */
 .social-item a:hover .tooltip {
-    top: -60px;
+    top: -50px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
