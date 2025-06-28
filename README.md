@@ -10,7 +10,6 @@
 - **Responsive Design:** Fully responsive layout that works on all devices
 - **Theme Switcher:** Toggle between light and dark themes with smooth transitions
 - **Interactive Elements:** Buttons and cards with hover effects and animations
-- **Optimized Performance:** Minified CSS and efficient JavaScript
 - **Accessibility:** Semantic HTML
 
 ## 🛠️ Technologies Used
@@ -38,17 +37,13 @@
 - Interactive navigation system
 - Floating action button for theme toggle
 
-## 📱 Responsive Breakpoints
-
-- Mobile: up to 767px
-- Tablet: 768px-1024px
-- Desktop: 1025px-1499px
-- Large Desktop: 1500px+
-
 ## 📧 Contact
 
 Feel free to reach out through any of the social links on the site.
 
 ---
 
+
+## Latest version
+Updated it for new projects , skills.
 *This portfolio is continuously being updated as I grow as a developer.*
