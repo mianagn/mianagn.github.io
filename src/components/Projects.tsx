@@ -3,12 +3,18 @@ import { useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projects, Project } from '../data/portfolioData';
 
-// Import all PNG images from assets folder
-const images = import.meta.glob('../assets/*.png', { eager: true, as: 'url' });
+// Import all PNG images from assets folder with correct syntax
+const images = import.meta.glob('../assets/*.png', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const filteredProjects = projects;
+
+  // Helper function to get image URL with fallback
+  const getImageUrl = (imageName: string): string => {
+    const imagePath = `../assets/${imageName}`;
+    return images[imagePath] || '/placeholder-image.png'; // fallback
+  };
 
   return (
     <section id="projects" className="py-20">
@@ -32,9 +38,13 @@ const Projects: React.FC = () => {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={images[`../assets/${project.image}`]}
+                  src={getImageUrl(project.image)}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${project.image}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
               
@@ -99,9 +109,13 @@ const Projects: React.FC = () => {
             <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="relative">
                 <img
-                  src={images[`../assets/${selectedProject.image}`]}
+                  src={getImageUrl(selectedProject.image)}
                   alt={selectedProject.title}
                   className="w-full h-64 object-cover"
+                  onError={(e) => {
+                    console.error(`Failed to load modal image: ${selectedProject.image}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
                 <button
                   onClick={() => setSelectedProject(null)}
