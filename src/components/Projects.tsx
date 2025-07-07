@@ -3,17 +3,33 @@ import { useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projects, Project } from '../data/portfolioData';
 
-// Import all PNG images from assets folder with correct syntax
-const images = import.meta.glob('../assets/*.png', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+// Import images directly
+import portfolioImg from '../../assets/portfolio.png';
+import jammingImg from '../../assets/jamming.png';
+import budgetTrackerImg from '../../assets/budgetTracker.png';
+import zoumpoulisImg from '../../assets/zoumpoulis.png';
+import zografosImg from '../../assets/zografos.png';
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const filteredProjects = projects;
 
-  // Helper function to get image URL with fallback
+  // Helper function to get image URL
   const getImageUrl = (imageName: string): string => {
-    const imagePath = `../assets/${imageName}`;
-    return images[imagePath] || '/placeholder-image.png'; // fallback
+    switch (imageName) {
+      case 'portfolio.png':
+        return portfolioImg;
+      case 'jamming.png':
+        return jammingImg;
+      case 'budgetTracker.png':
+        return budgetTrackerImg;
+      case 'zoumpoulis.png':
+        return zoumpoulisImg;
+      case 'zografos.png':
+        return zografosImg;
+      default:
+        return '/placeholder-image.png';
+    }
   };
 
   return (
