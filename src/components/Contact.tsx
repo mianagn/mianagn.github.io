@@ -4,10 +4,12 @@ import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from 'lucide-r
 import { personalInfo } from '../data/portfolioData';
 import emailjs from '@emailjs/browser';
 
+// Initialize EmailJS
+emailjs.init("IRbkoeup4DNwWgLL4"); // Replace with your actual EmailJS public key
+
 const SERVICE_ID = 'service_74qipbi';
 const TEMPLATE_ID = 'your_template_id'; // TODO: Replace with your EmailJS template ID
-const PUBLIC_KEY = '6Lf1M3srAAAAAJVnR3zOPQcmFxSk8rQ5XsEIq2h1'; // Your reCAPTCHA public key
-
+const PUBLIC_KEY = 'IRbkoeup4DNwWgLL4'; // Replace with your actual EmailJS public key
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +19,19 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    // Check if EmailJS is properly configured
+    if (TEMPLATE_ID === 'your_template_id' || PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
+      alert('EmailJS is not configured. Please update the template ID and public key.');
+      setIsSubmitting(false);
+      return;
+    }
+
     emailjs.send(
       SERVICE_ID,
       TEMPLATE_ID,
@@ -30,12 +43,16 @@ const Contact: React.FC = () => {
       },
       PUBLIC_KEY
     ).then(
-      () => {
+      (response) => {
+        console.log('SUCCESS!', response.status, response.text);
         alert('Message sent successfully!');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitting(false);
       },
-      () => {
+      (error) => {
+        console.log('FAILED...', error);
         alert('Failed to send message. Please try again later.');
+        setIsSubmitting(false);
       }
     );
   };
@@ -211,10 +228,13 @@ const Contact: React.FC = () => {
                 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className={`w-full bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 ${
+                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
                 >
                   <Send className="w-5 h-5" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
