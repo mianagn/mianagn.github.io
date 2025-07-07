@@ -7,8 +7,8 @@ import emailjs from '@emailjs/browser';
 // Initialize EmailJS
 emailjs.init("IRbkoeup4DNwWgLL4"); // Replace with your actual EmailJS public key
 
-const SERVICE_ID = 'service_74qipbi';
-const TEMPLATE_ID = 'your_template_id'; // TODO: Replace with your EmailJS template ID
+const SERVICE_ID = 'template_273r6as';
+const TEMPLATE_ID = 'service_74qipbi';
 const PUBLIC_KEY = 'IRbkoeup4DNwWgLL4'; // Replace with your actual EmailJS public key
 
 const Contact: React.FC = () => {
@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     // Check if EmailJS is properly configured
-    if (TEMPLATE_ID === 'your_template_id' || PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
+    if (TEMPLATE_ID === 'service_74qipbi' || PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
       alert('EmailJS is not configured. Please update the template ID and public key.');
       setIsSubmitting(false);
       return;
