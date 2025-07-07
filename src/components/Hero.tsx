@@ -44,8 +44,12 @@ const Hero: React.FC = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section ref={vantaRef} className="min-h-screen w-full relative overflow-hidden">
+    <section id="hero" ref={vantaRef} className="min-h-screen w-full relative overflow-hidden">
       {/* Transparent black overlay to mute clouds */}
       <div className="absolute inset-0 bg-black/30 z-1 pointer-events-none" />
       <div className="relative z-10 container mx-auto px-6 py-16 min-h-screen flex items-center">
@@ -78,7 +82,7 @@ const Hero: React.FC = () => {
               View My Work
             </button>
             <a
-              href={`mailto:${personalInfo.email}`}
+              onClick={scrollToContact}
               className="border-2 border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 backdrop-blur-sm hover:bg-white/10 flex items-center justify-center"
             >
               Get In Touch

@@ -157,7 +157,7 @@ const About: React.FC = () => {
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-2">High School</h4>
-                <p className="text-gray-600 text-sm">Diploma with Strong Foundation</p>
+                <p className="text-gray-600 text-sm"></p>
               </div>
             </div>
           </div>

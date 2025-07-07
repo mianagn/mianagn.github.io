@@ -68,7 +68,7 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "Personal Portfolio",
-    description: "A modern, interactive portfolio built with React, TailwindCSS, and Astro, featuring smooth animations and a beautiful UI.",
+    description: "A modern, interactive portfolio built with React, TailwindCSS",
     longDescription: "A fully responsive and visually engaging personal portfolio website built with React, TailwindCSS, and Astro. It features dynamic theme switching, smooth animations, project showcases, and a focus on user experience and modern web design. The site is optimized for performance and accessibility, and serves as a central hub for my work, skills, and contact information.",
     technologies: ["React", "TypeScript", "CSS"],
     image: "portfolio.png",
