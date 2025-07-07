@@ -1,3 +1,5 @@
+const images = import.meta.glob('../assets/*.png', { eager: true, as: 'url' });
+
 export interface Project {
   id: string;
   title: string;
@@ -69,7 +71,7 @@ export const projects: Project[] = [
     description: "A modern, interactive portfolio built with React, TailwindCSS, and Astro, featuring smooth animations and a beautiful UI.",
     longDescription: "A fully responsive and visually engaging personal portfolio website built with React, TailwindCSS, and Astro. It features dynamic theme switching, smooth animations, project showcases, and a focus on user experience and modern web design. The site is optimized for performance and accessibility, and serves as a central hub for my work, skills, and contact information.",
     technologies: ["React", "TypeScript", "CSS"],
-    image: "assets/portfolio.png",
+    image: "portfolio.png",
     githubUrl: "https://github.com/mianagn/PersonalPortfolio",
     liveUrl: "https://mianagn.github.io",
     category: "web",
@@ -81,7 +83,7 @@ export const projects: Project[] = [
     description: "A web app that integrates the Spotify API to create playlists, built with React",
     longDescription: "A React-based web application that connects to the Spotify API, allowing users to search for songs, create custom playlists, and save them directly to their Spotify account. Features include real-time search, playlist management, and seamless Spotify integration with OAuth authentication.",
     technologies: ["React", "JavaScript", "Spotify API", "CSS", "OAuth"],
-    image: "assets/jamming.png",
+    image: "jamming.png",
     githubUrl: "https://github.com/mianagn/Jamming",
     category: "web",
     featured: true
@@ -92,7 +94,7 @@ export const projects: Project[] = [
     description: "A transaction tracking desktop app that tracks your statistics, built with JavaFX",
     longDescription: "A comprehensive desktop application for personal finance management built with JavaFX. Features include transaction logging, expense categorization, statistical analysis, and visual charts for spending patterns. The app provides insights into financial habits and helps users manage their budgets effectively.",
     technologies: ["Java", "JavaFX", "Scene Builder", "CSS"],
-    image: "assets/budgetTracker.png",
+    image: "budgetTracker.png",
     githubUrl: "https://github.com/mianagn/BudgetTracker",
     category: "design",
     featured: true
@@ -103,7 +105,7 @@ export const projects: Project[] = [
     description: "A modern B2C website built with Astro and Sanity for an agricultural supplies shop.",
     longDescription: "Α modern B2C website built with Astro and Sanity for an agricultural supplies shop. The site features a clean, modern design, dynamic content management, and a seamless shopping experience for customers.",
     technologies: ["Astro", "Sanity","CSS"],
-    image: "assets/zoumpoulis.png",
+    image: "zoumpoulis.png",
     liveUrl: "https://zoumboulisike.netlify.app",
     category: "web",
     featured: true
@@ -114,7 +116,7 @@ export const projects: Project[] = [
     description: "A modern B2B website built with Astro and Sanity for seamless scalability and full customization of content and products.",
     longDescription: "A modern B2B website built with Astro and Sanity for seamless scalability and full customization of content and products. Designed for business clients, it offers advanced content management, product catalog features, and a robust, scalable architecture.",
     technologies: ["Astro", "Sanity", "CSS"],
-    image: "assets/zografos.png",
+    image: "zografos.png",
     liveUrl: "https://zografosHotel.netlify.app",
     category: "web",
     featured: true

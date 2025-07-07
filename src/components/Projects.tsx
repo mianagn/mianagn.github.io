@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projects, Project } from '../data/portfolioData';
 
+// Import all PNG images from assets folder
+const images = import.meta.glob('../assets/*.png', { eager: true, as: 'url' });
+
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const filteredProjects = projects;
@@ -29,7 +32,7 @@ const Projects: React.FC = () => {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image}
+                  src={images[`../assets/${project.image}`]}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -96,7 +99,7 @@ const Projects: React.FC = () => {
             <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="relative">
                 <img
-                  src={selectedProject.image}
+                  src={images[`../assets/${selectedProject.image}`]}
                   alt={selectedProject.title}
                   className="w-full h-64 object-cover"
                 />
