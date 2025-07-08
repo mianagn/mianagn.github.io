@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
@@ -26,7 +25,9 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     // Check if EmailJS is properly configured
-    if (TEMPLATE_ID === 'template_273r6as' || PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
+    if (TEMPLATE_ID === 'template_273r6as' && PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
+      // Configuration is correct, proceed with sending
+    } else {
       alert('EmailJS is not configured. Please update the template ID and public key.');
       setIsSubmitting(false);
       return;
@@ -64,11 +65,6 @@ const Contact: React.FC = () => {
     });
   };
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText(personalInfo.email);
-    // You could add a toast notification here
-  };
-
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-6">
@@ -82,80 +78,7 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Get in Touch</h3>
-              
-              <div className="space-y-6 mb-8">
-                <button
-                  onClick={copyEmail}
-                  className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition-colors duration-300 group w-full text-left"
-                >
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <Mail className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Email (Click to Copy)</p>
-                    <p className="text-sm text-gray-600">{personalInfo.email}</p>
-                  </div>
-                </button>
-
-                <a
-                  href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition-colors duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <Phone className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Phone</p>
-                    <p className="text-sm text-gray-600">{personalInfo.phone}</p>
-                  </div>
-                </a>
-
-                <div className="flex items-center gap-4 text-gray-700">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Location</p>
-                    <p className="text-sm text-gray-600">{personalInfo.location}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Follow Me</h4>
-                <div className="flex gap-4">
-                  <a
-                    href={personalInfo.social.github}
-                    className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center text-gray-600 hover:text-white hover:bg-gray-900 transition-all duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={personalInfo.social.linkedin}
-                    className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center text-gray-600 hover:text-white hover:bg-blue-600 transition-all duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={personalInfo.social.twitter}
-                    className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center text-gray-600 hover:text-white hover:bg-pink-600 transition-all duration-300"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
+          <div className="max-w-2xl mx-auto">
             {/* Contact Form */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Message</h3>
