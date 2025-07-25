@@ -104,13 +104,6 @@ const Hero: React.FC = () => {
             >
               <Linkedin className="w-6 h-6" />
             </a>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
-              aria-label="Email"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
           </div>
         </div>
       </div>

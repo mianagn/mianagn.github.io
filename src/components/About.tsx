@@ -7,12 +7,15 @@ import {
   FaJs, 
   FaReact, 
   FaGitAlt, 
-  FaFigma 
+  FaFigma,
+  FaFire 
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, 
   SiSanity, 
-  SiAstro 
+  SiAstro,
+  SiFirebase,
+  SiNetlify
 } from 'react-icons/si';
 import { MdOutlineViewQuilt } from 'react-icons/md';
 import { personalInfo } from '../data/portfolioData';
@@ -32,6 +35,8 @@ const About: React.FC = () => {
     { name: 'Sanity', icon: SiSanity, color: 'text-green-600'},
     { name: 'Astro', icon: SiAstro, color: 'text-purple-600' },
     { name: 'Figma', icon: FaFigma, color: 'text-pink-600' },
+    { name: 'Firebase', icon: SiFirebase, color: 'text-orange-500' },
+    { name: 'Netlify', icon: SiNetlify, color: 'text-teal-500' },
   ];
 
   // Duplicate skills for seamless loop
@@ -55,13 +60,13 @@ const About: React.FC = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">My Journey</h3>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  As a Computer Science student , I've discovered my passion for front-end development and creating products that are more of an experience rather than just a product. My academic journey has provided me with a strong foundation in programming principles ,computer scicence and software development.
+                  As a Computer Science student , I've discovered my passion for front-end development and creating projects that are more of an experience rather than just a product. My academic journey has provided me with a strong foundation in programming principles ,computer scicence and software development.
                 </p>
                 <p>
-                  I've worked on various projects ranging from desktop applications using JavaFX to modern web applications with React , Astro and Sanity. Each project has taught me valuable lessons about user interface design, API integration, and the importance of clean, maintainable code.
+                  I've worked on various projects ranging from desktop applications using JavaFX to modern web applications with React , Astro and Sanity. Each project has taught me valuable lessons about user interface design, API integration , cost effectiveness   and more.
                 </p>
                 <p>
-                  Currently, I'm seeking internship and junior developer positions where I can apply my skills in real-world scenarios and continue learning from experienced professionals. I'm particularly interested in front-end development and user experience design.
+                  Currently, I'm seeking intern and junior developer positions as well as freelance work to apply my skills in real-world scenarios and continue learning. I'm particularly interested in front-end development and user experience design.
                 </p>
               </div>
             </div>
@@ -75,7 +80,7 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Frontend Development</h4>
-                    <p className="text-gray-600">Building responsive web applications using React, HTML, CSS, and JavaScript with focus on user experience.</p>
+
                   </div>
                 </div>
                 
@@ -85,7 +90,7 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Desktop Applications</h4>
-                    <p className="text-gray-600">Creating desktop applications with JavaFX and integrating APIs for enhanced functionality.</p>
+
                   </div>
                 </div>
                 
@@ -95,7 +100,7 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">UI/UX Design</h4>
-                    <p className="text-gray-600">Designing intuitive interfaces with attention to user experience and modern design principles.</p>
+
                   </div>
                 </div>
               </div>
