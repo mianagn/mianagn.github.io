@@ -12,6 +12,12 @@ console.log('Environment variables loaded:', {
   VITE_EMAILJS_TEMPLATE_ID: env.VITE_EMAILJS_TEMPLATE_ID ? 'SET' : 'NOT SET',
 });
 
+console.log('Raw environment variables:', {
+  VITE_EMAILJS_PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+  VITE_EMAILJS_SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  VITE_EMAILJS_TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+});
+
 // Validation function
 export const validateEnv = () => {
   const required = [

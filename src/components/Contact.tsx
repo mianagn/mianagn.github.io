@@ -166,7 +166,13 @@ const Contact: React.FC = () => {
       return;
     }
     
-    if (isUsingDefaultValues()) {
+    // Check if we're using the actual values (not the placeholder ones)
+    if (env.VITE_EMAILJS_PUBLIC_KEY === 'IRbkoeup4DNwWgLL4' && 
+        env.VITE_EMAILJS_SERVICE_ID === 'service_74qipbi' && 
+        env.VITE_EMAILJS_TEMPLATE_ID === 'template_273r6as') {
+      // These are the real values, so proceed
+      console.log('Using real EmailJS credentials');
+    } else if (isUsingDefaultValues()) {
       setErrorMessage('EmailJS is using default values. Please update your environment variables with actual EmailJS credentials.');
       return;
     }
