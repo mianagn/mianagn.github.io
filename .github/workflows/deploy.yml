@@ -23,23 +23,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Debug environment variables
-      run: |
-        echo "Checking secrets..."
-        echo "PUBLIC_KEY exists: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY != '' }}"
-        echo "SERVICE_ID exists: ${{ secrets.VITE_EMAILJS_SERVICE_ID != '' }}"
-        echo "TEMPLATE_ID exists: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID != '' }}"
-        echo "PUBLIC_KEY value: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}"
-        echo "SERVICE_ID value: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}"
-        echo "TEMPLATE_ID value: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}"
-        
     - name: Create .env file
       run: |
         echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}" >> .env
         echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env
         echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}" >> .env
         echo "NODE_ENV=production" >> .env
-        cat .env
         
     - name: Build with environment variables
       run: npm run build
