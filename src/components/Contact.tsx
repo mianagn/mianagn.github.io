@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Send } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Send, Clock, Shield } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
@@ -10,28 +10,148 @@ const SERVICE_ID = 'service_74qipbi';
 const TEMPLATE_ID = 'template_273r6as';
 const PUBLIC_KEY = 'IRbkoeup4DNwWgLL4'; 
 
+// Spam protection constants
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const MAX_SUBMISSIONS = 3; // Max 3 submissions per 15 minutes
+const COOLDOWN_TIME = 60; // 60 seconds cooldown between submissions
+const MIN_MESSAGE_LENGTH = 10;
+const MAX_MESSAGE_LENGTH = 1000;
+
+// Spam patterns to detect
+const SPAM_PATTERNS = [
+  /http[s]?:\/\/[^\s]+/gi, // URLs
+  /[A-Z]{5,}/g, // Excessive caps
+  /(.)\1{4,}/g, // Repeated characters
+  /(.)\1{3,}/g, // 4+ repeated characters
+  /(.)\1{2,}/g, // 3+ repeated characters
+  /\b(viagra|casino|poker|lottery|winner|congratulations|click here|buy now|free money|earn money|make money|work from home|get rich|investment|loan|credit|debt|insurance|mortgage|refinance)\b/gi
+];
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cooldownTime, setCooldownTime] = useState(0);
+  const [submissionCount, setSubmissionCount] = useState(0);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Load submission data from localStorage on component mount
+  useEffect(() => {
+    const savedData = localStorage.getItem('contactFormData');
+    if (savedData) {
+      const { submissionCount, lastSubmissionTime } = JSON.parse(savedData);
+      setSubmissionCount(submissionCount || 0);
+      setLastSubmissionTime(lastSubmissionTime || 0);
+    }
+  }, []);
+
+  // Cooldown timer effect
+  useEffect(() => {
+    if (cooldownTime > 0) {
+      const timer = setTimeout(() => {
+        setCooldownTime(prev => prev - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldownTime]);
+
+  // Rate limiting check
+  const canSubmit = () => {
+    const now = Date.now();
+    
+    // Check cooldown
+    if (cooldownTime > 0) {
+      setErrorMessage(`Please wait ${cooldownTime} seconds before submitting again.`);
+      return false;
+    }
+    
+    // Check rate limit
+    if (now - lastSubmissionTime < RATE_LIMIT_WINDOW) {
+      if (submissionCount >= MAX_SUBMISSIONS) {
+        const remainingTime = Math.ceil((RATE_LIMIT_WINDOW - (now - lastSubmissionTime)) / 60000);
+        setErrorMessage(`Too many submissions. Please wait ${remainingTime} minutes before trying again.`);
+        return false;
+      }
+    } else {
+      // Reset counter if outside the window
+      setSubmissionCount(0);
+    }
+    
+    return true;
+  };
+
+  // Spam detection
+  const isSpam = (data: typeof formData) => {
+    // Check honeypot
+    if (data.website) {
+      console.log('Bot detected: Honeypot filled');
+      return true;
+    }
+    
+    // Check message length
+    if (data.message.length < MIN_MESSAGE_LENGTH || data.message.length > MAX_MESSAGE_LENGTH) {
+      setErrorMessage('Message must be between 10 and 1000 characters.');
+      return true;
+    }
+    
+    // Check for spam patterns
+    const textToCheck = `${data.name} ${data.subject} ${data.message}`.toLowerCase();
+    const isSpamDetected = SPAM_PATTERNS.some(pattern => pattern.test(textToCheck));
+    
+    if (isSpamDetected) {
+      console.log('Spam detected: Pattern match');
+      setErrorMessage('Your message appears to be spam. Please write a genuine message.');
+      return true;
+    }
+    
+    // Check for excessive repetition
+    const words = data.message.toLowerCase().split(/\s+/);
+    const wordCounts: { [key: string]: number } = {};
+    words.forEach(word => {
+      if (word.length > 3) {
+        wordCounts[word] = (wordCounts[word] || 0) + 1;
+      }
+    });
+    
+    const maxRepeatedWords = Math.max(...Object.values(wordCounts));
+    if (maxRepeatedWords > 5) {
+      console.log('Spam detected: Excessive word repetition');
+      setErrorMessage('Your message contains too many repeated words.');
+      return true;
+    }
+    
+    return false;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    setErrorMessage('');
+    
     // Check if EmailJS is properly configured
     if (TEMPLATE_ID === 'template_273r6as' && PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
       // Configuration is correct, proceed with sending
     } else {
-      alert('EmailJS is not configured. Please update the template ID and public key.');
-      setIsSubmitting(false);
+      setErrorMessage('EmailJS is not configured. Please update the template ID and public key.');
       return;
     }
+
+    // Spam protection checks
+    if (!canSubmit()) {
+      return;
+    }
+    
+    if (isSpam(formData)) {
+      return;
+    }
+
+    setIsSubmitting(true);
 
     emailjs.send(
       SERVICE_ID,
@@ -46,13 +166,27 @@ const Contact: React.FC = () => {
     ).then(
       (response) => {
         console.log('SUCCESS!', response.status, response.text);
+        
+        // Update submission tracking
+        const now = Date.now();
+        const newSubmissionCount = submissionCount + 1;
+        setSubmissionCount(newSubmissionCount);
+        setLastSubmissionTime(now);
+        setCooldownTime(COOLDOWN_TIME);
+        
+        // Save to localStorage
+        localStorage.setItem('contactFormData', JSON.stringify({
+          submissionCount: newSubmissionCount,
+          lastSubmissionTime: now
+        }));
+        
         alert('Message sent successfully!');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', website: '' });
         setIsSubmitting(false);
       },
       (error) => {
         console.log('FAILED...', error);
-        alert('Failed to send message. Please try again later.');
+        setErrorMessage('Failed to send message. Please try again later.');
         setIsSubmitting(false);
       }
     );
@@ -63,6 +197,10 @@ const Contact: React.FC = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage('');
+    }
   };
 
   return (
@@ -84,6 +222,25 @@ const Contact: React.FC = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
+                {/* Error message display */}
+                {errorMessage && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-2">
+                    <Shield className="w-5 h-5 text-red-600" />
+                    <span className="text-red-700">{errorMessage}</span>
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -96,6 +253,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      maxLength={50}
                       className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-300"
                       placeholder="John Doe"
                     />
@@ -111,6 +269,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      maxLength={100}
                       className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-300"
                       placeholder="john@example.com"
                     />
@@ -128,6 +287,7 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
+                    maxLength={100}
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-300"
                     placeholder="Opportunity"
                   />
@@ -135,7 +295,7 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
+                    Message <span className="text-gray-500">({formData.message.length}/{MAX_MESSAGE_LENGTH})</span>
                   </label>
                   <textarea
                     id="message"
@@ -144,6 +304,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={5}
+                    maxLength={MAX_MESSAGE_LENGTH}
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-300 resize-none"
                     placeholder="Tell me about the opportunity..."
                   />
@@ -151,13 +312,27 @@ const Contact: React.FC = () => {
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || cooldownTime > 0}
                   className={`w-full bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 ${
-                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    isSubmitting || cooldownTime > 0 ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >
-                  <Send className="w-5 h-5" />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {cooldownTime > 0 ? (
+                    <>
+                      <Clock className="w-5 h-5" />
+                      Wait {cooldownTime}s
+                    </>
+                  ) : isSubmitting ? (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>

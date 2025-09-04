@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Download } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 const Hero: React.FC = () => {
@@ -82,10 +82,12 @@ const Hero: React.FC = () => {
               View My Work
             </button>
             <a
-              onClick={scrollToContact}
-              className="border-2 border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 backdrop-blur-sm hover:bg-white/10 flex items-center justify-center"
+              href="/assets/Michael_Anagnostou_CV.pdf"
+              download="Michael_Anagnostou_CV.pdf"
+              className="border-2 border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 backdrop-blur-sm hover:bg-white/10 flex items-center justify-center gap-2"
             >
-              Get In Touch
+              <Download className="w-5 h-5" />
+              Download CV
             </a>
           </div>
 
@@ -108,14 +110,6 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <button
-          onClick={scrollToProjects}
-          className="text-white/60 hover:text-white transition-colors duration-300"
-        >
-          <ArrowDown className="w-6 h-6" />
-        </button>
-      </div>
     </section>
   );
 };

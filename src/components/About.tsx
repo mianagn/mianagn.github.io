@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Code, Palette, Zap, Award, GraduationCap } from 'lucide-react';
+import { Code, Palette, Zap, Award, GraduationCap, Globe, Briefcase } from 'lucide-react';
 import { 
   FaJava, 
   FaHtml5, 
@@ -7,15 +7,15 @@ import {
   FaJs, 
   FaReact, 
   FaGitAlt, 
-  FaFigma,
-  FaFire 
+  FaFigma
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, 
   SiSanity, 
   SiAstro,
   SiFirebase,
-  SiNetlify
+  SiNetlify,
+  SiMysql
 } from 'react-icons/si';
 import { MdOutlineViewQuilt } from 'react-icons/md';
 import { personalInfo } from '../data/portfolioData';
@@ -37,6 +37,7 @@ const About: React.FC = () => {
     { name: 'Figma', icon: FaFigma, color: 'text-pink-600' },
     { name: 'Firebase', icon: SiFirebase, color: 'text-orange-500' },
     { name: 'Netlify', icon: SiNetlify, color: 'text-teal-500' },
+    { name: 'SQL', icon: SiMysql, color: 'text-blue-600' },
   ];
 
   // Duplicate skills for seamless loop
@@ -100,6 +101,26 @@ const About: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">UI/UX Design</h4>
+
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Web Development</h4>
+
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Briefcase className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Freelance Projects</h4>
 
                   </div>
                 </div>
