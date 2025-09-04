@@ -67,10 +67,11 @@ const About: React.FC = () => {
                   I've worked on various projects ranging from desktop applications using JavaFX to modern web applications with React , Astro and Sanity. Each project has taught me valuable lessons about user interface design, API integration , cost effectiveness   and more.
                 </p>
                 <p>
-                  Currently, I'm seeking intern and junior developer positions as well as freelance work to apply my skills in real-world scenarios and continue learning. I'm particularly interested in front-end development and user experience design.
+                  Currently, I'm seeking intern and junior developer positions as well as freelance work to apply my skills in real world scenarios and continue learning. I'm particularly interested in front-end development and user experience design.
                 </p>
               </div>
             </div>
+            
 
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">What I Do</h3>
