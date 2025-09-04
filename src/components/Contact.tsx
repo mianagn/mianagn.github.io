@@ -2,13 +2,13 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Send, Clock, Shield } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { env, validateEnv, isUsingDefaultValues } from '../config/env';
 
-// Initialize EmailJS
-emailjs.init("IRbkoeup4DNwWgLL4"); // Replace with your actual EmailJS public key
+// Initialize EmailJS with environment variables
+emailjs.init(env.VITE_EMAILJS_PUBLIC_KEY);
 
-const SERVICE_ID = 'service_74qipbi';
-const TEMPLATE_ID = 'template_273r6as';
-const PUBLIC_KEY = 'IRbkoeup4DNwWgLL4'; 
+const SERVICE_ID = env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = env.VITE_EMAILJS_TEMPLATE_ID; 
 
 // Spam protection constants
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
     return true;
   };
 
-  // Spam detection
+  // Enhanced spam detection
   const isSpam = (data: typeof formData) => {
     // Check honeypot
     if (data.website) {
@@ -98,6 +98,24 @@ const Contact: React.FC = () => {
     // Check message length
     if (data.message.length < MIN_MESSAGE_LENGTH || data.message.length > MAX_MESSAGE_LENGTH) {
       setErrorMessage('Message must be between 10 and 1000 characters.');
+      return true;
+    }
+    
+    // Check for suspicious email patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(data.email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return true;
+    }
+    
+    // Check for disposable email domains
+    const disposableDomains = [
+      '10minutemail.com', 'tempmail.org', 'guerrillamail.com',
+      'mailinator.com', 'yopmail.com', 'temp-mail.org'
+    ];
+    const emailDomain = data.email.split('@')[1]?.toLowerCase();
+    if (disposableDomains.includes(emailDomain)) {
+      setErrorMessage('Please use a permanent email address.');
       return true;
     }
     
@@ -127,6 +145,14 @@ const Contact: React.FC = () => {
       return true;
     }
     
+    // Check for suspicious timing (too fast typing)
+    const typingSpeed = data.message.length / 10; // Rough estimate
+    if (typingSpeed > 50) { // More than 50 chars per second
+      console.log('Suspicious: Very fast typing detected');
+      setErrorMessage('Please take your time writing your message.');
+      return true;
+    }
+    
     return false;
   };
 
@@ -135,10 +161,13 @@ const Contact: React.FC = () => {
     setErrorMessage('');
     
     // Check if EmailJS is properly configured
-    if (TEMPLATE_ID === 'template_273r6as' && PUBLIC_KEY === 'IRbkoeup4DNwWgLL4') {
-      // Configuration is correct, proceed with sending
-    } else {
-      setErrorMessage('EmailJS is not configured. Please update the template ID and public key.');
+    if (!validateEnv()) {
+      setErrorMessage('EmailJS environment variables are missing. Please check your configuration.');
+      return;
+    }
+    
+    if (isUsingDefaultValues()) {
+      setErrorMessage('EmailJS is using default values. Please update your environment variables with actual EmailJS credentials.');
       return;
     }
 
@@ -162,7 +191,7 @@ const Contact: React.FC = () => {
         subject: formData.subject,
         message: formData.message
       },
-      PUBLIC_KEY
+      env.VITE_EMAILJS_PUBLIC_KEY
     ).then(
       (response) => {
         console.log('SUCCESS!', response.status, response.text);
