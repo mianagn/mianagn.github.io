@@ -23,6 +23,13 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
+    - name: Debug environment variables
+      run: |
+        echo "Checking secrets..."
+        echo "PUBLIC_KEY exists: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY != '' }}"
+        echo "SERVICE_ID exists: ${{ secrets.VITE_EMAILJS_SERVICE_ID != '' }}"
+        echo "TEMPLATE_ID exists: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID != '' }}"
+        
     - name: Build with environment variables
       run: npm run build
       env:

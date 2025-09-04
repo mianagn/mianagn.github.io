@@ -5,6 +5,13 @@ export const env = {
   VITE_EMAILJS_TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
 } as const;
 
+// Debug environment variables
+console.log('Environment variables loaded:', {
+  VITE_EMAILJS_PUBLIC_KEY: env.VITE_EMAILJS_PUBLIC_KEY ? 'SET' : 'NOT SET',
+  VITE_EMAILJS_SERVICE_ID: env.VITE_EMAILJS_SERVICE_ID ? 'SET' : 'NOT SET',
+  VITE_EMAILJS_TEMPLATE_ID: env.VITE_EMAILJS_TEMPLATE_ID ? 'SET' : 'NOT SET',
+});
+
 // Validation function
 export const validateEnv = () => {
   const required = [
