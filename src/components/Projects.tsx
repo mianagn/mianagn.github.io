@@ -79,7 +79,7 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             My Projects
           </h2>
@@ -90,11 +90,13 @@ const Projects: React.FC = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, index) => (
             <div
               key={project.id}
               className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 cursor-pointer group relative"
               onClick={() => openModal(project)}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
               {/* Work in Progress Badge */}
               {workInProgressIds.includes(project.id) && (

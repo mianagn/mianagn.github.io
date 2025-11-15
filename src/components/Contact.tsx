@@ -241,7 +241,7 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Let's Work Together
             </h2>
@@ -252,7 +252,7 @@ const Contact: React.FC = () => {
 
           <div className="max-w-2xl mx-auto">
             {/* Contact Form */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">

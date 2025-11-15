@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import AOS from 'aos';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,6 +10,16 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out',
+      once: true,
+      offset: 50,
+      delay: 0,
+    });
+  }, []);
+
   return (
     <div className="App">
       <Navigation />

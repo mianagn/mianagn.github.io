@@ -7,7 +7,7 @@ const Experience = () => {
     <section id="experience" className="py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-aos="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Experience
             </h2>
@@ -18,7 +18,7 @@ const Experience = () => {
 
           <div className="space-y-8">
             {experiences.map((experience, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div key={index} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100" data-aos="fade-up" data-aos-delay={index * 150}>
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">

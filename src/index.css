@@ -5,6 +5,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
+  }
+  
+  body {
+    overscroll-behavior: none;
   }
 }
 
