@@ -54,11 +54,12 @@ const Navigation: React.FC = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`font-medium transition-colors duration-300 hover:text-blue-600 ${
+                className={`font-medium transition-all duration-300 relative group ${
                   isScrolled ? 'text-gray-900' : 'text-white'
                 }`}
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
           </div>
@@ -91,11 +92,13 @@ const Navigation: React.FC = () => {
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={`block w-full text-center px-6 py-2.5 text-base font-medium transition-all duration-300
-                text-gray-900 hover:bg-gray-100/80 hover:text-blue-600
-                rounded-xl hover:scale-[1.02] focus:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-400/20`}
+                text-gray-900 hover:bg-gradient-to-r hover:from-blue-50 hover:to-red-50
+                rounded-xl hover:scale-[1.02] focus:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-400/20
+                relative group`}
               style={{transitionProperty: 'background, color, transform'}}
             >
-              {item.label}
+              <span className="relative z-10">{item.label}</span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-3/4"></span>
             </button>
           ))}
         </div>
