@@ -183,59 +183,59 @@ const Projects: React.FC = () => {
       {/* Project Detail Modal */}
       {isModalOpen && selectedProject && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 pt-20"
           onClick={handleBackdropClick}
         >
-          <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-100">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl max-w-2xl w-full max-h-[75vh] overflow-y-auto border border-gray-100">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <div className="flex items-center justify-between p-4 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900">
                   {selectedProject.title}
                 </h2>
                 {/* Work in Progress Badge in Modal */}
                 {workInProgressIds.includes(selectedProject.id) && (
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-sm font-semibold rounded-full shadow-lg">
-                    <Clock className="w-4 h-4" />
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                    <Clock className="w-3 h-3" />
                     <span>Work in Progress</span>
                   </div>
                 )}
               </div>
               <button
                 onClick={closeModal}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200"
               >
-                <X className="w-6 h-6 text-gray-600" />
+                <X className="w-5 h-5 text-gray-600" />
               </button>
             </div>
 
             {/* Modal Content */}
-            <div className="p-6">
+            <div className="p-4">
               {/* Project Image */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <img
                   src={getImageUrl(selectedProject.image)}
                   alt={selectedProject.title}
-                  className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg"
+                  className="w-full h-48 md:h-56 object-cover rounded-xl shadow-lg"
                 />
               </div>
 
               {/* Project Description */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
-                <p className="text-gray-600 leading-relaxed">
+              <div className="mb-4">
+                <h3 className="text-base font-semibold text-gray-900 mb-2">Description</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
                   {selectedProject.longDescription}
                 </p>
               </div>
 
               {/* Technologies */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Technologies Used</h3>
+              <div className="mb-4">
+                <h3 className="text-base font-semibold text-gray-900 mb-2">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-50 to-red-50 text-gray-700 text-sm rounded-full border border-gray-200"
+                      className="px-2.5 py-0.5 bg-gradient-to-r from-blue-50 to-red-50 text-gray-700 text-xs rounded-full border border-gray-200"
                     >
                       {tech}
                     </span>
@@ -244,26 +244,26 @@ const Projects: React.FC = () => {
               </div>
 
               {/* Project Links */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 {selectedProject.githubUrl && (
                   <a
                     href={selectedProject.githubUrl}
-                    className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github className="w-5 h-5" />
+                    <Github className="w-4 h-4" />
                     <span>View Code</span>
                   </a>
                 )}
                 {selectedProject.liveUrl && (
                   <a
                     href={selectedProject.liveUrl}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-red-600 text-white rounded-lg hover:from-blue-700 hover:to-red-700 transition-all duration-200"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-red-600 text-white text-sm rounded-lg hover:from-blue-700 hover:to-red-700 transition-all duration-200"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink className="w-5 h-5" />
+                    <ExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
                   </a>
                 )}
