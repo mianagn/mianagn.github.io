@@ -260,7 +260,7 @@ export default function Projects() {
                     </span>
                   )}
                 </h3>
-                <ExternalLink size={14} className="text-zinc-300 group-hover:text-accent transition-colors duration-200 shrink-0 mt-1" />
+                <ExternalLink size={14} className="text-zinc-300 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-200 shrink-0 mt-1" />
               </div>
 
               <p className="font-body text-sm text-zinc-600 leading-relaxed flex-1">

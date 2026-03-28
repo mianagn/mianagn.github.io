@@ -174,8 +174,15 @@ export default function Hero() {
           animate="show"
           className="relative z-10 max-w-3xl w-full flex flex-col items-center text-center"
         >
-          {/* Headline */}
+          {/* Name — intro line */}
           <motion.div variants={item}>
+            <p className="font-body text-lg text-zinc-700 font-semibold tracking-wide">
+              Michael Anagnostou
+            </p>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.div variants={item} className="mt-4">
             <h1
               className="font-heading font-black leading-[1.05] tracking-tighter text-zinc-950"
               style={{ fontSize: 'clamp(2.4rem, 6vw, 5rem)' }}
@@ -191,13 +198,6 @@ export default function Hero() {
               </PointerHighlight>
               <span className="text-zinc-950"> at a time.</span>
             </h1>
-          </motion.div>
-
-          {/* Name */}
-          <motion.div variants={item} className="mt-6">
-            <p className="font-body text-base text-zinc-600 font-medium tracking-wide">
-              Michael Anagnostou
-            </p>
           </motion.div>
 
           {/* Typewriter */}
