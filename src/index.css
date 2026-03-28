@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #FAFAFA;
+    color: #09090B;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Archivo', sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(45, 212, 191, 0.25);
+    color: #09090B;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F4F4F5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4D4D8;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2DD4BF;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Spotlight card border effect */
+.spotlight-card {
+  --x: 0;
+  --y: 0;
+  --spotlight-opacity: 0;
+  background: rgb(228 228 231);
+}
+
+.spotlight-card::before,
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Primary teal glow — sits in the border layer */
+.spotlight-card::before {
+  background: radial-gradient(
+    280px circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+    rgba(45, 212, 191, 0.85),
+    rgba(45, 212, 191, 0.2) 45%,
+    transparent 70%
+  );
+  opacity: var(--spotlight-opacity);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1.5px;
+}
+
+/* Secondary white hot-spot — tighter, brighter centre */
+.spotlight-card::after {
+  background: radial-gradient(
+    120px circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+    rgba(255, 255, 255, 0.55),
+    transparent 70%
+  );
+  opacity: var(--spotlight-opacity);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1.5px;
+}
