@@ -1,5 +1,4 @@
 import { motion, type Variants } from 'framer-motion'
-import { MapPin } from 'lucide-react'
 // @ts-ignore
 import TextType from './TextType'
 import { PointerHighlight } from './ui/pointer-highlight'
