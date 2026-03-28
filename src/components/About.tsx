@@ -73,7 +73,7 @@ const RESPONSES: Record<string, () => React.ReactNode> = {
         ['cups of coffee',    'a few'],
         ['bugs',              'yes'],
         ['npm install',       'what can go wrong?'],
-        ['sudo hire mixalis', 'trust me'],
+        ['sudo hire ', 'trust me'],
         ['clear',             'clear terminal'],
       ]).map(([cmd, desc]) => (
         <div key={cmd} className="flex gap-3">
@@ -111,7 +111,7 @@ const RESPONSES: Record<string, () => React.ReactNode> = {
   ),
   'npm install': () => <NpmInstallOutput />,
   'npm audit fix': () => <NpmAuditFixOutput />,
-  'sudo hire mixalis': () => (
+  'sudo hire': () => (
     <div className="space-y-1">
       <p className="text-green-500">[sudo] permission granted ✓</p>
       <p className="text-zinc-500">best decision you'll make today.</p>
@@ -127,7 +127,7 @@ function TerminalCard({ inView }: { inView: boolean }) {
       <div className="space-y-0.5">
         <p className="text-zinc-600 font-medium">michael@portfolio ~ v3.0.0</p>
         <p className="text-zinc-400">
-          type <span className="text-accent">help</span> to see what i can do.
+          type <span className="text-accent">help</span> to see the available commands.
         </p>
       </div>
     )},
@@ -256,7 +256,7 @@ function TerminalCard({ inView }: { inView: boolean }) {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-      className="hidden md:block shrink-0 w-96"
+      className="hidden md:block shrink-0 w-[28rem] mt-[40px]"
     >
       <div
         ref={terminalRef}
@@ -268,7 +268,7 @@ function TerminalCard({ inView }: { inView: boolean }) {
         className="rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-white cursor-text outline-none"
       >
         {/* Chrome */}
-        <div className="flex items-center gap-1.5 px-4 py-3 bg-zinc-50 border-b border-zinc-200 select-none">
+        <div className="flex items-center gap-1.5 px-5 py-3.5 bg-zinc-50 border-b border-zinc-200 select-none">
           <span className="w-3 h-3 rounded-full bg-red-400/80" />
           <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
           <span className="w-3 h-3 rounded-full bg-green-400/80" />
@@ -276,7 +276,7 @@ function TerminalCard({ inView }: { inView: boolean }) {
         </div>
 
         {/* History */}
-        <div ref={scrollRef} className="p-5 font-mono text-xs h-64 overflow-y-auto space-y-2.5 select-none">
+        <div ref={scrollRef} className="p-6 font-mono text-[13px] h-72 overflow-y-auto space-y-3 select-none">
           {history.map(entry => (
             <div key={entry.id}>
               {entry.type === 'cmd' && (
