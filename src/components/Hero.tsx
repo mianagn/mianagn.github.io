@@ -244,7 +244,7 @@ export default function Hero() {
         className="relative z-10 w-full pt-6 pb-20"
       >
         <p className="text-center font-body text-[10px] tracking-widest uppercase text-zinc-500 mb-5 px-6">
-          Nothing but cutting edge technologies
+          Nothing but cutting edge technologies.
         </p>
         {/* outer mask for fade edges */}
         <div className="relative overflow-hidden w-[820px] mx-auto [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
