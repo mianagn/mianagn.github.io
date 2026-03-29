@@ -63,7 +63,65 @@ function NpmInstallOutput() {
   )
 }
 
-const RESPONSES: Record<string, () => React.ReactNode> = {
+function NpmBuildOutput({ onClear, onScroll }: { onClear: () => void; onScroll: () => void }) {
+  const [frame, setFrame]         = useState(0)
+  const [step, setStep]           = useState(0)
+  const [countdown, setCountdown] = useState<number | null>(null)
+
+  useEffect(() => { onScroll() }, [step, countdown])
+
+  useEffect(() => {
+    const spin = setInterval(() => setFrame(f => (f + 1) % SPINNER.length), 80)
+    const s1 = setTimeout(() => setStep(1), 800)
+    const s2 = setTimeout(() => setStep(2), 1600)
+    const s3 = setTimeout(() => { setStep(3); clearInterval(spin) }, 2400)
+    const s4 = setTimeout(() => setStep(4), 3200)
+    const s5 = setTimeout(() => setCountdown(3), 4200)
+    const s6 = setTimeout(() => setCountdown(2), 5200)
+    const s7 = setTimeout(() => setCountdown(1), 6200)
+    const s8 = setTimeout(() => onClear(), 7200)
+    return () => { clearInterval(spin); [s1,s2,s3,s4,s5,s6,s7,s8].forEach(clearTimeout) }
+  }, [])
+
+  return (
+    <div className="space-y-0.5">
+      <p className="text-zinc-500">&gt; portfolio@1.0.0 build</p>
+      <p className="text-zinc-500">&gt; tsc && vite build</p>
+      <p className="text-zinc-400 mt-1">
+        {step < 3 ? `${SPINNER[frame]} compiling...` : '✓ compiled'}
+      </p>
+      {step >= 1 && (
+        <p className="text-zinc-400">
+          {step < 3 ? `${SPINNER[(frame+3)%SPINNER.length]} type checking...` : '✓ type checked'}
+        </p>
+      )}
+      {step >= 2 && (
+        <p className="text-zinc-400">
+          {step < 3 ? `${SPINNER[(frame+6)%SPINNER.length]} bundling...` : '✓ bundled'}
+        </p>
+      )}
+      {step >= 3 && (
+        <div className="mt-1 space-y-0.5">
+          <p className="text-red-400">error TS2551: Property 'fix' does not exist on type 'Bug[]'. Did you mean 'ignore'?</p>
+          <p className="text-red-400">error TS2339: Property 'sleep' does not exist on type 'Developer'.</p>
+          <p className="text-red-400">error TS2740: Type 'hope' is missing properties: 'tests', 'docs'.</p>
+        </div>
+      )}
+      {step >= 4 && (
+        <div className="mt-2 space-y-0.5">
+          <p className="text-red-500 font-bold animate-pulse">💥 CATASTROPHIC FAILURE</p>
+          <p className="text-red-400">INITIATING SELF-DESTRUCT SEQUENCE...</p>
+          {countdown !== null && (
+            <p className="text-red-300 font-bold text-lg">{countdown}...</p>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+type Actions = { clear: () => void; scroll: () => void }
+const RESPONSES: Record<string, (actions: Actions) => React.ReactNode> = {
   help: () => (
     <div className="space-y-1.5">
       <p className="text-zinc-400 mb-2">available commands:</p>
@@ -73,6 +131,7 @@ const RESPONSES: Record<string, () => React.ReactNode> = {
         ['cups of coffee',    'a few'],
         ['bugs',              'yes'],
         ['npm install',       'what can go wrong?'],
+        ['npm run build',    'bold strategy'],
         ['sudo hire ', 'trust me'],
         ['clear',             'clear terminal'],
       ]).map(([cmd, desc]) => (
@@ -110,6 +169,7 @@ const RESPONSES: Record<string, () => React.ReactNode> = {
     </div>
   ),
   'npm install': () => <NpmInstallOutput />,
+  'npm run build': ({ clear, scroll }) => <NpmBuildOutput onClear={clear} onScroll={scroll} />,
   'npm audit fix': () => <NpmAuditFixOutput />,
   'sudo hire': () => (
     <div className="space-y-1">
@@ -203,12 +263,22 @@ function TerminalCard({ inView }: { inView: boolean }) {
       return
     }
 
+    const scrollToBottom = () => { const el = scrollRef.current; if (el) el.scrollTop = el.scrollHeight }
+    const clearTerminal = () => {
+      setHistory([{ id: Date.now(), type: 'info', content: (
+        <div className="space-y-0.5">
+          <p className="text-zinc-600">look, the build failed — but that's never stopped anyone. deploy anyway!!</p>
+        </div>
+      )}])
+      setInput('')
+      setCursorPos(0)
+    }
     const responseFn = RESPONSES[trimmed]
     setHistory(h => [
       ...h,
       { id: Date.now(),     type: 'cmd',   content: trimmed },
       responseFn
-        ? { id: Date.now() + 1, type: 'output', content: responseFn() }
+        ? { id: Date.now() + 1, type: 'output', content: responseFn({ clear: clearTerminal, scroll: scrollToBottom }) }
         : { id: Date.now() + 1, type: 'error',  content: `command not found: ${trimmed}. try 'help'` },
     ])
     setCmdHistory(h => [trimmed, ...h])
