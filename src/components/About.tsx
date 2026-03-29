@@ -267,7 +267,7 @@ function TerminalCard({ inView }: { inView: boolean }) {
     const clearTerminal = () => {
       setHistory([{ id: Date.now(), type: 'info', content: (
         <div className="space-y-0.5">
-          <p className="text-zinc-600">look, the build failed — but that's never stopped anyone. deploy anyway!!</p>
+          <p className="text-zinc-600">look, the build failed — but that's never stopped anyone. Push to prod anyway!!</p>
         </div>
       )}])
       setInput('')
